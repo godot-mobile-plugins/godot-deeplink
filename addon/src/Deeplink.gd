@@ -3,6 +3,7 @@
 #
 
 @tool
+@icon("icon.png")
 class_name Deeplink extends Node
 
 signal deeplink_received(url: DeeplinkUrl)

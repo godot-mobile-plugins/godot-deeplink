@@ -5,8 +5,6 @@
 @tool
 extends EditorPlugin
 
-const PLUGIN_NODE_TYPE_NAME: String = "@pluginNodeName@"
-const PLUGIN_PARENT_NODE_TYPE: String = "Node"
 const PLUGIN_NAME: String = "@pluginName@"
 const ANDROID_DEPENDENCIES: Array = [ @androidDependencies@ ]
 const IOS_FRAMEWORKS: Array = [ @iosFrameworks@ ]
@@ -18,7 +16,6 @@ var ios_export_plugin: IosExportPlugin
 
 
 func _enter_tree() -> void:
-	add_custom_type(PLUGIN_NODE_TYPE_NAME, PLUGIN_PARENT_NODE_TYPE, preload("@pluginNodeName@.gd"), preload("icon.png"))
 	android_export_plugin = AndroidExportPlugin.new()
 	add_export_plugin(android_export_plugin)
 	ios_export_plugin = IosExportPlugin.new()
@@ -26,7 +23,6 @@ func _enter_tree() -> void:
 
 
 func _exit_tree() -> void:
-	remove_custom_type(PLUGIN_NODE_TYPE_NAME)
 	remove_export_plugin(android_export_plugin)
 	android_export_plugin = null
 	remove_export_plugin(ios_export_plugin)
