@@ -3,16 +3,16 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 77;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		073B52C82ECF241C0063663B /* deeplink_service.mm in Sources */ = {isa = PBXBuildFile; fileRef = 073B52C52ECF241C0063663B /* deeplink_service.mm */; };
-		073B52C92ECF241C0063663B /* gdp_converter.mm in Sources */ = {isa = PBXBuildFile; fileRef = 073B52C72ECF241C0063663B /* gdp_converter.mm */; };
-		078846F32EFA40A500F2A3E2 /* deeplink_plugin_bootstrap.mm in Sources */ = {isa = PBXBuildFile; fileRef = 078846EF2EFA40A500F2A3E2 /* deeplink_plugin_bootstrap.mm */; };
-		078846F42EFA40A500F2A3E2 /* deeplink_url.mm in Sources */ = {isa = PBXBuildFile; fileRef = 078846F12EFA40A500F2A3E2 /* deeplink_url.mm */; };
-		078846F52EFA40A500F2A3E2 /* deeplink_logger.mm in Sources */ = {isa = PBXBuildFile; fileRef = 078846ED2EFA40A500F2A3E2 /* deeplink_logger.mm */; };
-		90CAAA9924E71FF10013969F /* deeplink_plugin.mm in Sources */ = {isa = PBXBuildFile; fileRef = 90CAAA9824E71FF10013969F /* deeplink_plugin.mm */; };
+		077144982F34AE6B0039DDEB /* deeplink_plugin.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0771448F2F34AE6B0039DDEB /* deeplink_plugin.mm */; };
+		077144992F34AE6B0039DDEB /* deeplink_plugin_bootstrap.mm in Sources */ = {isa = PBXBuildFile; fileRef = 077144912F34AE6B0039DDEB /* deeplink_plugin_bootstrap.mm */; };
+		0771449A2F34AE6B0039DDEB /* gdp_converter.mm in Sources */ = {isa = PBXBuildFile; fileRef = 077144962F34AE6B0039DDEB /* gdp_converter.mm */; };
+		0771449B2F34AE6B0039DDEB /* deeplink_logger.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0771448D2F34AE6B0039DDEB /* deeplink_logger.mm */; };
+		0771449C2F34AE6B0039DDEB /* deeplink_url.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0771448A2F34AE6B0039DDEB /* deeplink_url.mm */; };
+		0771449D2F34AE6B0039DDEB /* deeplink_service.mm in Sources */ = {isa = PBXBuildFile; fileRef = 077144942F34AE6B0039DDEB /* deeplink_service.mm */; };
 		94A1B0B2910D06DA0F4D3D3C /* Pods_deeplink_plugin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 380C444E6383B0C8ACA7CA7D /* Pods_deeplink_plugin.framework */; };
 /* End PBXBuildFile section */
 
@@ -29,25 +29,23 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		073B52C32ECF241C0063663B /* deeplink_plugin-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "deeplink_plugin-Bridging-Header.h"; sourceTree = "<group>"; };
-		073B52C42ECF241C0063663B /* deeplink_service.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = deeplink_service.h; sourceTree = "<group>"; };
-		073B52C52ECF241C0063663B /* deeplink_service.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = deeplink_service.mm; sourceTree = "<group>"; };
-		073B52C62ECF241C0063663B /* gdp_converter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = gdp_converter.h; sourceTree = "<group>"; };
-		073B52C72ECF241C0063663B /* gdp_converter.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = gdp_converter.mm; sourceTree = "<group>"; };
-		078846EC2EFA40A500F2A3E2 /* deeplink_logger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = deeplink_logger.h; sourceTree = "<group>"; };
-		078846ED2EFA40A500F2A3E2 /* deeplink_logger.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = deeplink_logger.mm; sourceTree = "<group>"; };
-		078846EE2EFA40A500F2A3E2 /* deeplink_plugin_bootstrap.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = deeplink_plugin_bootstrap.h; sourceTree = "<group>"; };
-		078846EF2EFA40A500F2A3E2 /* deeplink_plugin_bootstrap.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = deeplink_plugin_bootstrap.mm; sourceTree = "<group>"; };
-		078846F02EFA40A500F2A3E2 /* deeplink_url.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = deeplink_url.h; sourceTree = "<group>"; };
-		078846F12EFA40A500F2A3E2 /* deeplink_url.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = deeplink_url.mm; sourceTree = "<group>"; };
+		077144892F34AE6B0039DDEB /* deeplink_url.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = deeplink_url.h; sourceTree = "<group>"; };
+		0771448A2F34AE6B0039DDEB /* deeplink_url.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = deeplink_url.mm; sourceTree = "<group>"; };
+		0771448C2F34AE6B0039DDEB /* deeplink_logger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = deeplink_logger.h; sourceTree = "<group>"; };
+		0771448D2F34AE6B0039DDEB /* deeplink_logger.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = deeplink_logger.mm; sourceTree = "<group>"; };
+		0771448E2F34AE6B0039DDEB /* deeplink_plugin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = deeplink_plugin.h; sourceTree = "<group>"; };
+		0771448F2F34AE6B0039DDEB /* deeplink_plugin.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = deeplink_plugin.mm; sourceTree = "<group>"; };
+		077144902F34AE6B0039DDEB /* deeplink_plugin_bootstrap.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = deeplink_plugin_bootstrap.h; sourceTree = "<group>"; };
+		077144912F34AE6B0039DDEB /* deeplink_plugin_bootstrap.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = deeplink_plugin_bootstrap.mm; sourceTree = "<group>"; };
+		077144922F34AE6B0039DDEB /* deeplink_plugin-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "deeplink_plugin-Bridging-Header.h"; sourceTree = "<group>"; };
+		077144932F34AE6B0039DDEB /* deeplink_service.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = deeplink_service.h; sourceTree = "<group>"; };
+		077144942F34AE6B0039DDEB /* deeplink_service.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = deeplink_service.mm; sourceTree = "<group>"; };
+		077144952F34AE6B0039DDEB /* gdp_converter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = gdp_converter.h; sourceTree = "<group>"; };
+		077144962F34AE6B0039DDEB /* gdp_converter.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = gdp_converter.mm; sourceTree = "<group>"; };
 		1A3D1E30D9DC57319C20B62B /* Pods-deeplink_plugin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-deeplink_plugin.release.xcconfig"; path = "Target Support Files/Pods-deeplink_plugin/Pods-deeplink_plugin.release.xcconfig"; sourceTree = "<group>"; };
 		380C444E6383B0C8ACA7CA7D /* Pods_deeplink_plugin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_deeplink_plugin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		403D7C7BCFBA671DEF15AE95 /* Pods-deeplink_plugin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-deeplink_plugin.debug.xcconfig"; path = "Target Support Files/Pods-deeplink_plugin/Pods-deeplink_plugin.debug.xcconfig"; sourceTree = "<group>"; };
 		90CAAA9424E71FF10013969F /* libdeeplink_plugin.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libdeeplink_plugin.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		90CAAA9724E71FF10013969F /* deeplink_plugin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = deeplink_plugin.h; sourceTree = "<group>"; };
-		90CAAA9824E71FF10013969F /* deeplink_plugin.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = deeplink_plugin.mm; sourceTree = "<group>"; };
-		AAE936A0178A8EA9BB753CEA /* Pods-deeplink_plugin_implementation.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-deeplink_plugin_implementation.debug.xcconfig"; path = "Target Support Files/Pods-inapp_review_plugin/Pods-deeplink_plugin_implementation.debug.xcconfig"; sourceTree = "<group>"; };
-		D5F7A9D28867FD798F31BF3B /* Pods-deeplink_plugin_implementation.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-deeplink_plugin_implementation.release.xcconfig"; path = "Target Support Files/Pods-inapp_review_plugin/Pods-deeplink_plugin_implementation.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,13 +60,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		078846F22EFA40A500F2A3E2 /* model */ = {
+		0771448B2F34AE6B0039DDEB /* model */ = {
 			isa = PBXGroup;
 			children = (
-				078846F02EFA40A500F2A3E2 /* deeplink_url.h */,
-				078846F12EFA40A500F2A3E2 /* deeplink_url.mm */,
+				077144892F34AE6B0039DDEB /* deeplink_url.h */,
+				0771448A2F34AE6B0039DDEB /* deeplink_url.mm */,
 			);
 			path = model;
+			sourceTree = "<group>";
+		};
+		077144972F34AE6B0039DDEB /* src */ = {
+			isa = PBXGroup;
+			children = (
+				0771448B2F34AE6B0039DDEB /* model */,
+				0771448C2F34AE6B0039DDEB /* deeplink_logger.h */,
+				0771448D2F34AE6B0039DDEB /* deeplink_logger.mm */,
+				0771448E2F34AE6B0039DDEB /* deeplink_plugin.h */,
+				0771448F2F34AE6B0039DDEB /* deeplink_plugin.mm */,
+				077144902F34AE6B0039DDEB /* deeplink_plugin_bootstrap.h */,
+				077144912F34AE6B0039DDEB /* deeplink_plugin_bootstrap.mm */,
+				077144922F34AE6B0039DDEB /* deeplink_plugin-Bridging-Header.h */,
+				077144932F34AE6B0039DDEB /* deeplink_service.h */,
+				077144942F34AE6B0039DDEB /* deeplink_service.mm */,
+				077144952F34AE6B0039DDEB /* gdp_converter.h */,
+				077144962F34AE6B0039DDEB /* gdp_converter.mm */,
+			);
+			path = src;
 			sourceTree = "<group>";
 		};
 		66EA7AD27171A8F93A267403 /* Pods */ = {
@@ -76,8 +93,6 @@
 			children = (
 				403D7C7BCFBA671DEF15AE95 /* Pods-deeplink_plugin.debug.xcconfig */,
 				1A3D1E30D9DC57319C20B62B /* Pods-deeplink_plugin.release.xcconfig */,
-				AAE936A0178A8EA9BB753CEA /* Pods-deeplink_plugin_implementation.debug.xcconfig */,
-				D5F7A9D28867FD798F31BF3B /* Pods-deeplink_plugin_implementation.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -85,7 +100,7 @@
 		90CAAA8B24E71FF10013969F = {
 			isa = PBXGroup;
 			children = (
-				90CAAA9624E71FF10013969F /* deeplink */,
+				077144972F34AE6B0039DDEB /* src */,
 				90CAAA9524E71FF10013969F /* Products */,
 				90CAAAA824E72A8A0013969F /* Frameworks */,
 				66EA7AD27171A8F93A267403 /* Pods */,
@@ -98,25 +113,6 @@
 				90CAAA9424E71FF10013969F /* libdeeplink_plugin.a */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		90CAAA9624E71FF10013969F /* deeplink */ = {
-			isa = PBXGroup;
-			children = (
-				078846F22EFA40A500F2A3E2 /* model */,
-				073B52C32ECF241C0063663B /* deeplink_plugin-Bridging-Header.h */,
-				073B52C42ECF241C0063663B /* deeplink_service.h */,
-				078846EC2EFA40A500F2A3E2 /* deeplink_logger.h */,
-				078846ED2EFA40A500F2A3E2 /* deeplink_logger.mm */,
-				078846EE2EFA40A500F2A3E2 /* deeplink_plugin_bootstrap.h */,
-				078846EF2EFA40A500F2A3E2 /* deeplink_plugin_bootstrap.mm */,
-				073B52C52ECF241C0063663B /* deeplink_service.mm */,
-				073B52C62ECF241C0063663B /* gdp_converter.h */,
-				073B52C72ECF241C0063663B /* gdp_converter.mm */,
-				90CAAA9724E71FF10013969F /* deeplink_plugin.h */,
-				90CAAA9824E71FF10013969F /* deeplink_plugin.mm */,
-			);
-			path = deeplink;
 			sourceTree = "<group>";
 		};
 		90CAAAA824E72A8A0013969F /* Frameworks */ = {
@@ -211,12 +207,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				90CAAA9924E71FF10013969F /* deeplink_plugin.mm in Sources */,
-				078846F32EFA40A500F2A3E2 /* deeplink_plugin_bootstrap.mm in Sources */,
-				078846F42EFA40A500F2A3E2 /* deeplink_url.mm in Sources */,
-				078846F52EFA40A500F2A3E2 /* deeplink_logger.mm in Sources */,
-				073B52C82ECF241C0063663B /* deeplink_service.mm in Sources */,
-				073B52C92ECF241C0063663B /* gdp_converter.mm in Sources */,
+				077144982F34AE6B0039DDEB /* deeplink_plugin.mm in Sources */,
+				077144992F34AE6B0039DDEB /* deeplink_plugin_bootstrap.mm in Sources */,
+				0771449A2F34AE6B0039DDEB /* gdp_converter.mm in Sources */,
+				0771449B2F34AE6B0039DDEB /* deeplink_logger.mm in Sources */,
+				0771449C2F34AE6B0039DDEB /* deeplink_url.mm in Sources */,
+				0771449D2F34AE6B0039DDEB /* deeplink_service.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -340,7 +336,6 @@
 				CODE_SIGN_STYLE = Automatic;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SRCROOT)/model",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -403,18 +398,10 @@
 				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
-					"-ObjC",
-					"-framework",
-					os,
-					"-lswiftCore",
-					"-lswiftDispatch",
-					"-lswiftObjectiveC",
-					"-lswiftUIKit",
-					"-lswiftFoundation",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "deeplink/deeplink_plugin-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "src/deeplink_plugin-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.9;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -428,7 +415,6 @@
 				CODE_SIGN_STYLE = Automatic;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SRCROOT)/model",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -482,18 +468,10 @@
 				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
-					"-ObjC",
-					"-framework",
-					os,
-					"-lswiftCore",
-					"-lswiftDispatch",
-					"-lswiftObjectiveC",
-					"-lswiftUIKit",
-					"-lswiftFoundation",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "deeplink/deeplink_plugin-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "src/deeplink_plugin-Bridging-Header.h";
 				SWIFT_VERSION = 5.9;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

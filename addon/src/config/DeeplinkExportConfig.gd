@@ -100,7 +100,7 @@ func load_export_config_from_node(a_platform: Deeplink.Platform) -> Error:
 					PLUGIN_NODE_TYPE_NAME, __scene_path])
 			if not __discovered_nodes.is_empty():
 				__deeplink_nodes.append_array(__discovered_nodes)
-	
+
 	if __deeplink_nodes.is_empty():
 		Deeplink.log_warn("%s failed to find any %s nodes!" % [PLUGIN_NAME, PLUGIN_NODE_TYPE_NAME])
 	else:

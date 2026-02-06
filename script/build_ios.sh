@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# © 2025-present https://github.com/cengiz-pz
+# © 2024-present https://github.com/cengiz-pz
 #
 
 set -euo pipefail
@@ -8,8 +8,8 @@ set -euo pipefail
 SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 ROOT_DIR=$(realpath $SCRIPT_DIR/..)
 IOS_DIR=$ROOT_DIR/ios
-ANDROID_DIR=$ROOT_DIR/android
 ADDON_DIR=$ROOT_DIR/addon
+ADDON_OUTPUT_DIR=$ADDON_DIR/build/output
 GODOT_DIR=$IOS_DIR/godot
 IOS_CONFIG_DIR=$IOS_DIR/config
 COMMON_DIR=$ROOT_DIR/common
@@ -19,7 +19,7 @@ DEST_DIR=$BUILD_DIR/release
 FRAMEWORK_DIR=$BUILD_DIR/framework
 LIB_DIR=$BUILD_DIR/lib
 IOS_CONFIG_FILE=$IOS_CONFIG_DIR/config.properties
-COMMON_CONFIG_FILE=$COMMON_DIR/config.properties
+COMMON_CONFIG_FILE=$COMMON_DIR/config/config.properties
 
 PLUGIN_NODE_NAME=$($SCRIPT_DIR/get_config_property.sh -f $COMMON_CONFIG_FILE pluginNodeName)
 PLUGIN_NAME="${PLUGIN_NODE_NAME}Plugin"
@@ -27,27 +27,8 @@ PLUGIN_VERSION=$($SCRIPT_DIR/get_config_property.sh -f $COMMON_CONFIG_FILE plugi
 PLUGIN_MODULE_NAME=$($SCRIPT_DIR/get_config_property.sh -f $COMMON_CONFIG_FILE pluginModuleName)
 IOS_INITIALIZATION_METHOD="${PLUGIN_MODULE_NAME}_plugin_init"
 IOS_DEINITIALIZATION_METHOD="${PLUGIN_MODULE_NAME}_plugin_deinit"
-IOS_PLATFORM_VERSION=$($SCRIPT_DIR/get_config_property.sh -f $IOS_CONFIG_FILE platform_version)
-PLUGIN_PACKAGE_NAME=$($SCRIPT_DIR/get_gradle_property.sh pluginPackageName $ANDROID_DIR/config.gradle.kts)
-ANDROID_DEPENDENCIES=$($SCRIPT_DIR/get_android_dependencies.sh)
 GODOT_VERSION=$($SCRIPT_DIR/get_config_property.sh -f $COMMON_CONFIG_FILE godotVersion)
 GODOT_RELEASE_TYPE=$($SCRIPT_DIR/get_config_property.sh -f $COMMON_CONFIG_FILE godotReleaseType)
-EXTRA_PROPERTIES=()
-while IFS= read -r line; do
-	EXTRA_PROPERTIES+=("$line")
-done < <($SCRIPT_DIR/get_config_property.sh -a -f $COMMON_CONFIG_FILE extraProperties)
-IOS_FRAMEWORKS=()
-while IFS= read -r line; do
-	IOS_FRAMEWORKS+=("$line")
-done < <($SCRIPT_DIR/get_config_property.sh -qa -f $IOS_CONFIG_FILE frameworks)
-IOS_EMBEDDED_FRAMEWORKS=()
-while IFS= read -r line; do
-	IOS_EMBEDDED_FRAMEWORKS+=("$line")
-done < <($SCRIPT_DIR/get_config_property.sh -qa -f $IOS_CONFIG_FILE embedded_frameworks)
-IOS_LINKER_FLAGS=()
-while IFS= read -r line; do
-	IOS_LINKER_FLAGS+=("$line")
-done < <($SCRIPT_DIR/get_config_property.sh -qa -f $IOS_CONFIG_FILE flags)
 BUILD_TIMEOUT=40	# increase this value using -t option if device is not able to generate all headers before godot build is killed
 
 do_clean=false
@@ -277,6 +258,35 @@ function generate_godot_headers()
 }
 
 
+function validate_godot_version()
+{
+	if [[ ! -f "$GODOT_DIR/GODOT_VERSION" ]]; then
+		display_error "GODOT_VERSION file not found in $GODOT_DIR"
+		exit 1
+	fi
+
+	local downloaded_version=$(cat "$GODOT_DIR/GODOT_VERSION" | tr -d '[:space:]')
+	local expected_version="$GODOT_VERSION"
+
+	display_status "Validating Godot version..."
+	echo_blue "Expected version (from config): $expected_version"
+	echo_blue "Downloaded version (from GODOT_VERSION file): $downloaded_version"
+
+	if [[ "$downloaded_version" != "$expected_version" ]]; then
+		display_error "Godot version mismatch!"
+		$SCRIPT_DIR/echocolor.sh -r "  Expected: $expected_version"
+		$SCRIPT_DIR/echocolor.sh -r "  Found:    $downloaded_version"
+		echo
+		$SCRIPT_DIR/echocolor.sh -r "The Godot version in $GODOT_DIR/GODOT_VERSION does not match"
+		$SCRIPT_DIR/echocolor.sh -r "the godotVersion property in $COMMON_CONFIG_FILE"
+		echo
+		exit 1
+	fi
+
+	display_progress "Godot version validation passed: $expected_version"
+}
+
+
 function install_pods()
 {
 	display_status "Installing pods..."
@@ -301,6 +311,9 @@ function build_plugin()
 		display_error "godot wasn't downloaded properly. Can't build plugin."
 		exit 1
 	fi
+
+	# Validate that the Godot version matches the configured version
+	validate_godot_version
 
 	SCHEME=${1:-${PLUGIN_MODULE_NAME}_plugin}
 	PROJECT=${2:-${PLUGIN_MODULE_NAME}_plugin.xcodeproj}
@@ -382,97 +395,6 @@ function build_plugin()
 }
 
 
-function merge_string_array()
-{
-	local arr=("$@")	# Accept array as input
-	printf "%s" "${arr[0]}"
-	for ((i=1; i<${#arr[@]}; i++)); do
-		printf ", %s" "${arr[i]}"
-	done
-}
-
-
-function replace_extra_properties()
-{
-	local file_path="$1"
-	shift
-	local prop_array=("$@")
-
-	# Check if file exists and is not empty
-	if [[ ! -s "$file_path" ]]; then
-		display_error "File '$file_path' does not exist or is empty, skipping replacements"
-		return 0
-	fi
-
-	# Check if prop_array is empty
-	if [[ ${#prop_array[@]} -eq 0 ]]; then
-		echo_blue "No extra properties provided for replacement in file: $file_path"
-		return 0
-	fi
-
-	# Log the file being processed
-	echo_blue "Processing extra properties: ${prop_array[*]} in file: $file_path"
-
-	# Process each key:value pair
-	for prop in "${prop_array[@]}"; do
-		# Trim whitespace and skip if empty
-		prop="${prop//[[:space:]]/}"
-		if [[ -z "$prop" ]]; then
-			continue
-		fi
-
-		# Split key:value pair
-		local key="${prop%%:*}"
-		local value="${prop#*:}"
-
-		# Validate key:value pair
-		if [[ -z "$key" || -z "$value" ]]; then
-			display_error "Invalid key:value pair '$prop'"
-			exit 1
-		fi
-
-		# Create pattern with @ delimiters
-		local pattern="@${key}@"
-
-		# Escape pattern for grep/sed
-		local escaped_pattern
-		escaped_pattern=$(printf '%s' "$pattern" | sed 's/[][\\^$.*]/\\&/g' | sed 's/\./\\./g')
-
-		# Escape replacement value for sed - We escape the pipe delimiter (|) AND the dot (.)
-		local escaped_value
-		escaped_value=$(printf '%s' "$value" | sed 's/[|.]/\\&/g')
-
-		# Count occurrences of the pattern before replacement
-		local count
-		count=$(LC_ALL=C grep -o "$escaped_pattern" "$file_path" 2>grep_error.log || true | wc -l | tr -d '[:space:]')
-		local grep_status=$?
-		if [[ $grep_status -ne 0 && $grep_status -ne 1 ]]; then
-			echo_blue "Debug: grep exit status: $grep_status"
-			echo_blue "Debug: grep error output: $(cat grep_error.log)"
-			display_error "Failed to count occurrences of '$pattern' in '$file_path'"
-			exit 1
-		fi
-
-		# Debug: Check if pattern exists
-		if [[ $count -eq 0 ]]; then
-			echo_blue "No occurrences of '$pattern' found in '$file_path'"
-		else
-			echo_blue "Found $count occurrences of '$pattern' in '$file_path'"
-		fi
-
-		# Replace all occurrences in file, use empty backup extension for macOS
-		if ! LC_ALL=C sed -i '' "s|$escaped_pattern|$escaped_value|g" "$file_path" 2>sed_error.log; then
-			echo_blue "Debug: sed error output: $(cat sed_error.log)"
-			display_error "Failed to replace '$pattern' in '$file_path'"
-			exit 1
-		fi
-	done
-
-	# Clean up temporary files
-	rm -f grep_error.log sed_error.log
-}
-
-
 function create_zip_archive()
 {
 	local zip_file_name="$PLUGIN_NAME-iOS-v$PLUGIN_VERSION.zip"
@@ -485,12 +407,13 @@ function create_zip_archive()
 
 	local tmp_directory=$(mktemp -d)
 
+	$SCRIPT_DIR/run_gradle_task.sh "generateGDScript"
+
 	display_status "Preparing staging directory $tmp_directory"
 
-	if [[ -d "$ADDON_DIR" ]]
+	if [[ -d "$ADDON_OUTPUT_DIR" ]]
 	then
-		mkdir -p $tmp_directory/addons/$PLUGIN_NAME
-		cp -r $ADDON_DIR/* $tmp_directory/addons/$PLUGIN_NAME
+		cp -r $ADDON_OUTPUT_DIR/* $tmp_directory
 
 		mkdir -p $tmp_directory/ios/plugins
 		cp $IOS_CONFIG_DIR/*.gdip $tmp_directory/ios/plugins
@@ -504,42 +427,22 @@ function create_zip_archive()
 			SED_INPLACE=(-i)
 		fi
 
-		find "$tmp_directory" -type f \( -name '*.gd' -o -name '*.cfg' -o -name '*.gdip' \) | while IFS= read -r file; do
+		find "$tmp_directory" -type f \( -name '*.gdip' \) | while IFS= read -r file; do
 			display_progress "Editing: $file"
 
 			# Escape variables to handle special characters
 			ESCAPED_PLUGIN_NAME=$(printf '%s' "$PLUGIN_NAME" | sed 's/[\/&]/\\&/g')
-			ESCAPED_PLUGIN_VERSION=$(printf '%s' "$PLUGIN_VERSION" | sed 's/[\/&]/\\&/g')
-			ESCAPED_PLUGIN_NODE_NAME=$(printf '%s' "$PLUGIN_NODE_NAME" | sed 's/[\/&]/\\&/g')
-			ESCAPED_PLUGIN_PACKAGE_NAME=$(printf '%s' "$PLUGIN_PACKAGE_NAME" | sed 's/[\/&]/\\&/g')
-			ESCAPED_ANDROID_DEPENDENCIES=$(printf '%s' "$ANDROID_DEPENDENCIES" | sed 's/[\/&]/\\&/g')
 			ESCAPED_IOS_INITIALIZATION_METHOD=$(printf '%s' "$IOS_INITIALIZATION_METHOD" | sed 's/[\/&]/\\&/g')
 			ESCAPED_IOS_DEINITIALIZATION_METHOD=$(printf '%s' "$IOS_DEINITIALIZATION_METHOD" | sed 's/[\/&]/\\&/g')
-			ESCAPED_IOS_PLATFORM_VERSION=$(printf '%s' "$IOS_PLATFORM_VERSION" | sed 's/[\/&]/\\&/g')
-			ESCAPED_IOS_FRAMEWORKS=$(merge_string_array "${IOS_FRAMEWORKS[@]}" | sed 's/[\/&]/\\&/g')
-			ESCAPED_IOS_EMBEDDED_FRAMEWORKS=$(merge_string_array "${IOS_EMBEDDED_FRAMEWORKS[@]}" | sed 's/[\/&]/\\&/g')
-			ESCAPED_IOS_LINKER_FLAGS=$(merge_string_array "${IOS_LINKER_FLAGS[@]}" | sed 's/[\/&]/\\&/g')
 
 			sed "${SED_INPLACE[@]}" -e "
 				s|@pluginName@|$ESCAPED_PLUGIN_NAME|g;
-				s|@pluginVersion@|$ESCAPED_PLUGIN_VERSION|g;
-				s|@pluginNodeName@|$ESCAPED_PLUGIN_NODE_NAME|g;
-				s|@pluginPackage@|$ESCAPED_PLUGIN_PACKAGE_NAME|g;
-				s|@androidDependencies@|$ESCAPED_ANDROID_DEPENDENCIES|g;
 				s|@iosInitializationMethod@|$ESCAPED_IOS_INITIALIZATION_METHOD|g;
-				s|@iosDeinitializationMethod@|$ESCAPED_IOS_DEINITIALIZATION_METHOD|g;
-				s|@iosPlatformVersion@|$ESCAPED_IOS_PLATFORM_VERSION|g;
-				s|@iosFrameworks@|$ESCAPED_IOS_FRAMEWORKS|g;
-				s|@iosEmbeddedFrameworks@|$ESCAPED_IOS_EMBEDDED_FRAMEWORKS|g;
-				s|@iosLinkerFlags@|$ESCAPED_IOS_LINKER_FLAGS|g
+				s|@iosDeinitializationMethod@|$ESCAPED_IOS_DEINITIALIZATION_METHOD|g
 			" "$file"
-
-			if [[ ${#EXTRA_PROPERTIES[@]} -gt 0 ]]; then
-				replace_extra_properties "$file" "${EXTRA_PROPERTIES[@]}"
-			fi
 		done
 	else
-		display_error "'$ADDON_DIR' not found."
+		display_error "'$ADDON_OUTPUT_DIR' not found."
 		exit 1
 	fi
 
