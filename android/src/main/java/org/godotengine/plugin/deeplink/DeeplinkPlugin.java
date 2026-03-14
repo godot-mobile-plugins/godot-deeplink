@@ -108,7 +108,7 @@ public class DeeplinkPlugin extends GodotPlugin {
 			}
 			else {
 				Log.e(LOG_TAG, "is_domain_associated(): android version " + android.os.Build.VERSION.SDK_INT + " is not supported. " +
-						android.os.Build.VERSION_CODES.S + " is required.");
+					android.os.Build.VERSION_CODES.S + " is required.");
 			}
 		}
 		else {
@@ -148,7 +148,7 @@ public class DeeplinkPlugin extends GodotPlugin {
 			}
 			else {
 				Log.e(LOG_TAG, "navigate_to_open_by_default_settings(): android version " + android.os.Build.VERSION.SDK_INT + " is not supported. " +
-						android.os.Build.VERSION_CODES.S + " is required.");
+					android.os.Build.VERSION_CODES.S + " is required.");
 			}
 		}
 		else {

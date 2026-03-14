@@ -5,28 +5,26 @@
 #ifndef deeplink_plugin_h
 #define deeplink_plugin_h
 
-#include "core/object/object.h"
 #include "core/object/class_db.h"
+#include "core/object/object.h"
 
 #import "deeplink_url.h"
 
-
 extern String const DEEPLINK_RECEIVED_SIGNAL;
-
 
 class DeeplinkPlugin : public Object {
 	GDCLASS(DeeplinkPlugin, Object);
 
 private:
-	static DeeplinkPlugin* instance;
+	static DeeplinkPlugin *instance;
 
 	bool initialized;
 
 	static void _bind_methods();
-	
+
 public:
-	static DeeplinkUrl* receivedUrl;
-	
+	static DeeplinkUrl *receivedUrl;
+
 	Error initialize();
 
 	String get_url();
@@ -43,8 +41,8 @@ public:
 
 	void navigate_to_open_by_default_settings();
 
-	static DeeplinkPlugin* get_singleton();
-	
+	static DeeplinkPlugin *get_singleton();
+
 	DeeplinkPlugin();
 	~DeeplinkPlugin();
 };

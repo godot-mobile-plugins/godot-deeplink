@@ -17,10 +17,9 @@ static String const kPathComponentsProperty = "path_components";
 static String const kQueryProperty = "query";
 static String const kFragmentProperty = "fragment";
 
-
 @implementation DeeplinkUrl
 
-- (instancetype) initWithNsUrl:(NSURL*) nsUrl {
+- (instancetype)initWithNsUrl:(NSURL *)nsUrl {
 	self = [super init];
 	if (self) {
 		_absoluteString = nsUrl.absoluteString;
@@ -38,7 +37,7 @@ static String const kFragmentProperty = "fragment";
 	return self;
 }
 
-- (Dictionary) buildRawData {
+- (Dictionary)buildRawData {
 	Dictionary dictionary;
 
 	dictionary[kSchemeProperty] = [self.scheme UTF8String];

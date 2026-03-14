@@ -13,8 +13,8 @@ const PLUGIN_SINGLETON_NAME: String = "@pluginName@"
 const DEEPLINK_RECEIVED_SIGNAL_NAME = "deeplink_received"
 
 enum Platform {
-	Android =		1 << 0,		## 1- Android
-	iOS =			1 << 1,		## 2- iOS
+	Android = 1 << 0,  ## 1- Android
+	iOS = 1 << 1,  ## 2- iOS
 }
 
 @export_category("Details")
@@ -31,15 +31,16 @@ enum Platform {
 ## A path prefix in a deeplink is a specific part of a URL that is used to map a web link to a particular
 ## activity or screen within an app. For example, a path prefix like /recipe would route any URL with that
 ## prefix, such as http://www.recipe-app.com/recipe/grilled-potato-salad, directly to the recipe viewing screen
-## for the specified recipe in the app instead of the website. 
+## for the specified recipe in the app instead of the website.
 @export var path_prefix: String = ""
 
 @export_category("Platform")
 ## List of platforms for which this deeplink will be exported.
-@export_flags(" ") var enabled_platforms = Platform.Android | Platform.iOS: set = _set_enabled_platforms
+@export_flags(" ") var enabled_platforms = Platform.Android | Platform.iOS:
+	set = _set_enabled_platforms
 
 @export_category("Android-specific")
-@export_group("Intent","android_")
+@export_group("Intent", "android_")
 ## In Android, the android:label attribute within an <intent-filter> element serves to provide a user-readable
 ## label for the capabilities described by that specific intent filter. This label is displayed to the user
 ## when the activity is presented as an option to handle an intent that matches the filter.
@@ -50,7 +51,7 @@ enum Platform {
 ## default handler for specific web domains and schemes defined within the intent filter.
 @export var android_is_auto_verify: bool = true
 
-@export_group("Intent Category","android_")
+@export_group("Intent Category", "android_")
 ## The android.intent.category.DEFAULT category in an Android intent-filter indicates that the activity
 ## can be the target of an implicit intent when no other specific category is explicitly declared in the intent.
 @export var android_is_default: bool = true

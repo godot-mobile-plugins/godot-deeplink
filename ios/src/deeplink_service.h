@@ -7,15 +7,19 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DeeplinkService : UIResponder<UIApplicationDelegate>
+@interface DeeplinkService : UIResponder <UIApplicationDelegate>
 
-+ (instancetype) shared;
++ (instancetype)shared;
 
-- (BOOL) application:(UIApplication*) app openURL:(NSURL*) url options:(NSDictionary<UIApplicationOpenURLOptionsKey, id>*) options;
+- (BOOL)application:(UIApplication *)app
+			openURL:(NSURL *)url
+			options:(NSDictionary<UIApplicationOpenURLOptionsKey, id> *)options;
 
-- (BOOL) application:(UIApplication*) app continueUserActivity:(NSUserActivity*) userActivity restorationHandler:(void (^)(NSArray<id<UIUserActivityRestoring>>* restorableObjects)) restorationHandler;
+- (BOOL)application:(UIApplication *)app
+		continueUserActivity:(NSUserActivity *)userActivity
+		  restorationHandler:(void (^)(NSArray<id<UIUserActivityRestoring>> *restorableObjects))restorationHandler;
 
-- (BOOL) application:(UIApplication*) app didFinishLaunchingWithOptions:(NSDictionary<NSString*,id> *) launchOptions;
+- (BOOL)application:(UIApplication *)app didFinishLaunchingWithOptions:(NSDictionary<NSString *, id> *)launchOptions;
 
 @end
 

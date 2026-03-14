@@ -74,8 +74,8 @@ public class DeeplinkUrl {
 
 			// Path components as Java String[]
 			String[] pathComponents = Arrays.stream(path.split("/"))
-					.filter(c -> !c.isEmpty())
-					.toArray(String[]::new);
+				.filter(c -> !c.isEmpty())
+				.toArray(String[]::new);
 			if (pathComponents.length > 0) {
 				_data.put(PATH_COMPONENTS_PROPERTY, pathComponents);
 			}

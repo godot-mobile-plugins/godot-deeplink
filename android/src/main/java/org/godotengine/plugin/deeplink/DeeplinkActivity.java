@@ -57,7 +57,8 @@ public class DeeplinkActivity extends Activity {
 			godotIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 			Log.d(LOG_TAG, "startGodot() " + CLASS_NAME + " with " + godotIntent);
 			startActivity(godotIntent);
-		} else {
+		}
+		else {
 			Log.i(LOG_TAG, "startGodot(): Godot is already running.");
 			DeeplinkPlugin.instance.handleDeeplinkReceived(new DeeplinkUrl(uri).getRawData());
 		}
