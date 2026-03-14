@@ -69,7 +69,7 @@ public class DeeplinkPlugin extends GodotPlugin {
 				DomainVerificationManager manager = context.getSystemService(DomainVerificationManager.class);
 				try {
 					DomainVerificationUserState userState =
-						manager.getDomainVerificationUserState(context.getPackageName());
+							manager.getDomainVerificationUserState(context.getPackageName());
 					if (userState != null) {
 						Map<String, Integer> hostToStateMap = userState.getHostToStateMap();
 						if (hostToStateMap.containsKey(domain)) {
@@ -79,29 +79,29 @@ public class DeeplinkPlugin extends GodotPlugin {
 									case DomainVerificationUserState.DOMAIN_STATE_VERIFIED:
 										result = true;
 										Log.i(LOG_TAG, "is_domain_associated(): state of " + domain
-											+ " domain is verified for " + context.getPackageName());
+												+ " domain is verified for " + context.getPackageName());
 										break;
 									case DomainVerificationUserState.DOMAIN_STATE_SELECTED:
 										result = true;
 										Log.i(LOG_TAG, "is_domain_associated(): state of " + domain
-											+ " domain is selected for " + context.getPackageName());
+												+ " domain is selected for " + context.getPackageName());
 										break;
 									case DomainVerificationUserState.DOMAIN_STATE_NONE:
 										Log.w(LOG_TAG, "is_domain_associated(): state of " + domain
-											+ " domain is 'none' for " + context.getPackageName());
+												+ " domain is 'none' for " + context.getPackageName());
 										break;
 									default:
 										Log.e(LOG_TAG, "is_domain_associated(): invalid state of " + domain
-											+ " domain for " + context.getPackageName());
+												+ " domain for " + context.getPackageName());
 										break;
 								}
 							} else {
 								Log.e(LOG_TAG, "is_domain_associated(): state for " + domain
-									+ "domain is null for " + context.getPackageName());
+										+ "domain is null for " + context.getPackageName());
 							}
 						} else {
 							Log.e(LOG_TAG, "is_domain_associated(): state for " + domain
-								+ "domain not found for " + context.getPackageName());
+									+ "domain not found for " + context.getPackageName());
 						}
 					}
 				} catch (PackageManager.NameNotFoundException e) {
@@ -109,7 +109,7 @@ public class DeeplinkPlugin extends GodotPlugin {
 				}
 			} else {
 				Log.e(LOG_TAG, "is_domain_associated(): android version " + android.os.Build.VERSION.SDK_INT
-					+ " is not supported. " + android.os.Build.VERSION_CODES.S + " is required.");
+						+ " is not supported. " + android.os.Build.VERSION_CODES.S + " is required.");
 			}
 		} else {
 			Log.e(LOG_TAG, "is_domain_associated(): activity is null");
@@ -133,13 +133,15 @@ public class DeeplinkPlugin extends GodotPlugin {
 				}
 
 				if (oneUiVersion < 0 || oneUiVersion >= 140000) {
-					Log.i(LOG_TAG, "navigate_to_open_by_default_settings(): opening 'Open By Default' settings screen.");
+					Log.i(LOG_TAG,
+							"navigate_to_open_by_default_settings(): opening 'Open By Default' settings screen.");
 					Intent intent = new Intent(Settings.ACTION_APP_OPEN_BY_DEFAULT_SETTINGS,
-						Uri.parse("package:" + context.getPackageName()));
+							Uri.parse("package:" + context.getPackageName()));
 					intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 					context.startActivity(intent);
 				} else {
-					Log.i(LOG_TAG, "navigate_to_open_by_default_settings(): opening manage domain URLs settings screen.");
+					Log.i(LOG_TAG,
+							"navigate_to_open_by_default_settings(): opening manage domain URLs settings screen.");
 					Intent intent = new Intent();
 					intent.setAction("android.settings.MANAGE_DOMAIN_URLS");
 					intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -147,8 +149,8 @@ public class DeeplinkPlugin extends GodotPlugin {
 				}
 			} else {
 				Log.e(LOG_TAG, "navigate_to_open_by_default_settings(): android version "
-					+ android.os.Build.VERSION.SDK_INT + " is not supported. "
-					+ android.os.Build.VERSION_CODES.S + " is required.");
+						+ android.os.Build.VERSION.SDK_INT + " is not supported. "
+						+ android.os.Build.VERSION_CODES.S + " is required.");
 			}
 		} else {
 			Log.e(LOG_TAG, "navigate_to_open_by_default_settings(): activity is null");
@@ -244,7 +246,7 @@ public class DeeplinkPlugin extends GodotPlugin {
 			currentIntent.setData(null);
 
 			Log.d(LOG_TAG, "clear_data() "
-				+ (currentIntent.getData() == null ? "successfully" : "unsuccessfully") + " cleared");
+					+ (currentIntent.getData() == null ? "successfully" : "unsuccessfully") + " cleared");
 		} else {
 			Log.e(LOG_TAG, "clear_data() activity is null");
 		}

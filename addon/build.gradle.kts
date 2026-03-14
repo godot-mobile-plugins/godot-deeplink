@@ -213,10 +213,16 @@ tasks {
             }
 
             val sourceFiles =
-                fileTree(addonSrcDir) {
-                    include("**/*.gd")
-                    gdscriptFormatExcludes.forEach { exclude(it) }
-                }.files
+                (
+                    fileTree(addonSrcDir) {
+                        include("**/*.gd")
+                        gdscriptFormatExcludes.forEach { exclude(it) }
+                    } +
+                        fileTree("${rootProject.projectDir}/../demo") {
+                            include("**/*.gd")
+                            exclude("addons/**")
+                        }
+                ).files
                     .map { it.relativeTo(addonSrcDir).path }
                     .sorted()
 
@@ -257,10 +263,16 @@ tasks {
             }
 
             val sourceFiles =
-                fileTree(addonSrcDir) {
-                    include("**/*.gd")
-                    gdscriptFormatExcludes.forEach { exclude(it) }
-                }.files
+                (
+                    fileTree(addonSrcDir) {
+                        include("**/*.gd")
+                        gdscriptFormatExcludes.forEach { exclude(it) }
+                    } +
+                        fileTree("${rootProject.projectDir}/../demo") {
+                            include("**/*.gd")
+                            exclude("addons/**")
+                        }
+                ).files
                     .map { it.relativeTo(addonSrcDir).path }
                     .sorted()
 

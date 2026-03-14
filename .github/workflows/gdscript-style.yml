@@ -29,7 +29,7 @@ jobs:
         run: |
           cp .github/config/.gdformatrc .gdformatrc
           echo "Checking GDScript formatting in addon directory..."
-          find addon/src -type f -name "*.gd" ! \( -name "*Plugin.gd" -o -name "MediationNetwork.gd" \) | xargs gdformat --check
+          find addon/src -type f -name "*.gd" ! -name "*Plugin.gd" | xargs gdformat --check
           echo "Checking GDScript formatting in demo directory..."
           find demo -type f -name "*.gd" -not -path "demo/addons/*" | xargs gdformat --check
 
