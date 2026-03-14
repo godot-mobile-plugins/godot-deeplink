@@ -1,76 +1,80 @@
-[gd_scene load_steps=5 format=3 uid="uid://cbngbohjs4thb"]
+[gd_scene format=3 uid="uid://cbngbohjs4thb"]
 
 [ext_resource type="Script" uid="uid://bvnnasa716p82" path="res://Main.gd" id="1_6m677"]
 [ext_resource type="Script" uid="uid://u8nbtrhtxa3l" path="res://addons/DeeplinkPlugin/Deeplink.gd" id="2_4jmv3"]
 [ext_resource type="Texture2D" uid="uid://h27catmxp2hf" path="res://assets/deeplink-android.png" id="2_ym6q2"]
 [ext_resource type="Texture2D" uid="uid://cf7vmysob0pff" path="res://assets/deeplink-ios.png" id="3_cm0pq"]
 
-[node name="Main" type="Node"]
+[node name="Main" type="Node" unique_id=1130989560]
 script = ExtResource("1_6m677")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=666004591]
 
-[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer"]
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer" unique_id=1201560302]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/CenterContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/CenterContainer" unique_id=1931102530]
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/CenterContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/CenterContainer/VBoxContainer" unique_id=1413198547]
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="AndroidTextureRect" type="TextureRect" parent="CanvasLayer/CenterContainer/VBoxContainer/HBoxContainer"]
+[node name="AndroidTextureRect" type="TextureRect" parent="CanvasLayer/CenterContainer/VBoxContainer/HBoxContainer" unique_id=260083816]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 128)
 layout_mode = 2
 texture = ExtResource("2_ym6q2")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="iOSTextureRect" type="TextureRect" parent="CanvasLayer/CenterContainer/VBoxContainer/HBoxContainer"]
+[node name="iOSTextureRect" type="TextureRect" parent="CanvasLayer/CenterContainer/VBoxContainer/HBoxContainer" unique_id=1562899944]
+unique_name_in_owner = true
 layout_mode = 2
 texture = ExtResource("3_cm0pq")
 
-[node name="Label" type="Label" parent="CanvasLayer/CenterContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="CanvasLayer/CenterContainer/VBoxContainer" unique_id=1160225968]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "Deeplink Demo"
 horizontal_alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/CenterContainer/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/CenterContainer/VBoxContainer" unique_id=1625148024]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="TextEdit" type="TextEdit" parent="CanvasLayer/CenterContainer/VBoxContainer/VBoxContainer"]
+[node name="TextEdit" type="TextEdit" parent="CanvasLayer/CenterContainer/VBoxContainer/VBoxContainer" unique_id=2093265444]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(350, 35)
 layout_mode = 2
 placeholder_text = "Domain"
 
-[node name="IsAssociatedButton" type="Button" parent="CanvasLayer/CenterContainer/VBoxContainer/VBoxContainer"]
+[node name="IsAssociatedButton" type="Button" parent="CanvasLayer/CenterContainer/VBoxContainer/VBoxContainer" unique_id=562978406]
 layout_mode = 2
 text = "Check Domain Association"
 
-[node name="NavigateButton" type="Button" parent="CanvasLayer/CenterContainer/VBoxContainer/VBoxContainer"]
+[node name="NavigateButton" type="Button" parent="CanvasLayer/CenterContainer/VBoxContainer/VBoxContainer" unique_id=1705006573]
 layout_mode = 2
 text = "Navigate to System Settings"
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/CenterContainer/VBoxContainer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/CenterContainer/VBoxContainer" unique_id=728433513]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 300)
 layout_mode = 2
 scroll_following = true
 
-[node name="Deeplink" type="Node" parent="."]
+[node name="Deeplink" type="Node" parent="." unique_id=841803590]
 script = ExtResource("2_4jmv3")
 host = "www.example.com"
 path_prefix = "/mydata"
 android_label = "example"
 
-[node name="TestCustomSchemeDeeplink" type="Node" parent="Deeplink"]
+[node name="TestCustomSchemeDeeplink" type="Node" parent="Deeplink" unique_id=954243650]
 script = ExtResource("2_4jmv3")
 scheme = "mytest"
 android_label = "customscheme"

@@ -71,12 +71,10 @@ public class DeeplinkActivity extends Activity {
 			uri = intent.getData();
 			if (uri != null) {
 				Log.d(LOG_TAG, "checkIntent() " + CLASS_NAME + " received app link data " + uri);
-			}
-			else {
+			} else {
 				Log.d(LOG_TAG, "checkIntent() " + CLASS_NAME + " uri is null for intent " + intent);
 			}
-		}
-		else {
+		} else {
 			Log.d(LOG_TAG, "checkIntent() " + CLASS_NAME + " intent is null.");
 		}
 

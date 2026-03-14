@@ -1,10 +1,17 @@
 <p align="center">
-	<img width="256" height="256" src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-deeplink/main/demo/assets/deeplink-android.png">
+	<img width="128" height="128" src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-deeplink/main/demo/assets/deeplink-android.png">
 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	<img width="256" height="256" src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-deeplink/main/demo/assets/deeplink-ios.png">
+	<img width="128" height="128" src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-deeplink/main/demo/assets/deeplink-ios.png">
 </p>
 
----
+<div align="center">
+	<a href="https://github.com/godot-mobile-plugins/godot-deeplink"><img src="https://img.shields.io/github/stars/godot-mobile-plugins/godot-deeplink?label=Stars&style=plastic" height="40"/></a>
+	<img src="https://img.shields.io/github/v/release/godot-mobile-plugins/godot-deeplink?label=Latest%20Release&style=plastic" height="40"/>
+	<img src="https://img.shields.io/github/downloads/godot-mobile-plugins/godot-deeplink/latest/total?label=Downloads&style=plastic" height="40"/>
+	<img src="https://img.shields.io/github/downloads/godot-mobile-plugins/godot-deeplink/total?label=Total%20Downloads&style=plastic" height="40"/>
+</div>
+
+<br>
 
 # <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-deeplink/main/addon/src/icon.png" width="24"> Godot Deeplink Plugin
 
@@ -15,8 +22,6 @@ Deeplink plugin provides a unified GDScript interface for processing of App Link
 - Provide support for custom schemes.
 - Check if a domain is associated with app.
 - Forward users to related app settings on platform.
-
----
 
 ## <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-deeplink/main/addon/src/icon.png" width="20"> Table of Contents
 - [Demo](#demo)
@@ -32,8 +37,6 @@ Deeplink plugin provides a unified GDScript interface for processing of App Link
 - [Credits](#credits)
 - [Contributing](#contributing)
 
----
-
 <a name="demo"></a>
 
 ## <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-deeplink/main/addon/src/icon.png" width="20"> Demo
@@ -43,8 +46,6 @@ Try the **demo app** located in the `demo` directory.
 <p align="center">
 	<img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-deeplink/main/docs/assets/demo_screenshot_android_531.png" width="273">
 </p>
-
----
 
 <a name="installation"></a>
 
@@ -64,8 +65,6 @@ If using both Android & iOS, ensure **same addon interface version**.
 	- Download release from GitHub
 	- Unzip to project root
 	- Enable via **Plugins** tab
-
----
 
 <a name="usage"></a>
 
@@ -121,15 +120,11 @@ func _on_deeplink_received(url: DeeplinkUrl) -> void:
 - The `deeplink_received` signal is emitted only when the URL matches the configured `scheme`, `host`, and optional `path_prefix`.
 - Deeplink data is also accessible via `get_link_*()` methods on the Deeplink node.
 
----
-
 <a name="signals"></a>
 
 ## <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-deeplink/main/addon/src/icon.png" width="20"> Signals
 
 - `deeplink_received(url: DeeplinkUrl)`: Emitted when app content is requested via deeplink. Must be connected at startup, as early as possible, or via Godot Editor.
-
----
 
 <a name="methods"></a>
 
@@ -217,8 +212,6 @@ func _on_deeplink_received(url: DeeplinkUrl) -> void:
 	print(url.get_path())
 ```
 
----
-
 <a name="export"></a>
 
 ## <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-deeplink/main/addon/src/icon.png" width="20"> Export
@@ -264,8 +257,6 @@ During iOS export, the plugin searches for `Deeplink` nodes in the scene that is
 - Make sure that the scene that contains the `Deeplink` node(s) is selected in the Godot Editor when building and exporting for Android, or
 - Make sure that your Godot project's main scene contains one or more `Deeplink` nodes.
 
----
-
 <a name="platform-specific-notes"></a>
 
 ## <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-deeplink/main/addon/src/icon.png" width="20"> Platform-Specific Notes
@@ -288,7 +279,7 @@ In addition to adding and enabling the plugin, **platform-level configuration** 
 	- View XCode logs while running the game for troubleshooting.
 	- See [Godot iOS Export Troubleshooting](https://docs.godotengine.org/en/stable/tutorials/export/exporting_for_ios.html#troubleshooting).
 
----
+<br>
 
 <a name="links"></a>
 
@@ -297,25 +288,26 @@ In addition to adding and enabling the plugin, **platform-level configuration** 
 - [AssetLib Entry Android](https://godotengine.org/asset-library/asset/2534)
 - [AssetLib Entry iOS](https://godotengine.org/asset-library/asset/3191)
 
----
+<br>
 
 <a name="all-plugins"></a>
 
 # <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-deeplink/main/addon/src/icon.png" width="24"> All Plugins
 
-| Plugin | Android | iOS | Free | Open Source | License |
-| :--- | :---: | :---: | :---: | :---: | :---: |
-| [Admob](https://github.com/godot-sdk-integrations/godot-admob) | ✅ | ✅ | ✅ | ✅ | MIT |
-| [Notification Scheduler](https://github.com/godot-mobile-plugins/godot-notification-scheduler) | ✅ | ✅ | ✅ | ✅ | MIT |
-| [Deeplink](https://github.com/godot-mobile-plugins/godot-deeplink) | ✅ | ✅ | ✅ | ✅ | MIT |
-| [Share](https://github.com/godot-mobile-plugins/godot-share) | ✅ | ✅ | ✅ | ✅ | MIT |
-| [In-App Review](https://github.com/godot-mobile-plugins/godot-inapp-review) | ✅ | ✅ | ✅ | ✅ | MIT |
-| [Native Camera](https://github.com/godot-mobile-plugins/godot-native-camera) | ✅ | ✅ | ✅ | ✅ | MIT |
-| [Connection State](https://github.com/godot-mobile-plugins/godot-connection-state) | ✅ | ✅ | ✅ | ✅ | MIT |
-| [OAuth 2.0](https://github.com/godot-mobile-plugins/godot-oauth2) | ✅ | ✅ | ✅ | ✅ | MIT |
-| [QR](https://github.com/godot-mobile-plugins/godot-qr) | ✅ | ✅ | ✅ | ✅ | MIT |
+| ✦ | Plugin | Android | iOS | Latest Release | Downloads | Stars |
+| :--- | :--- | :---: | :---: | :---: | :---: | :---: |
+| <img src="https://raw.githubusercontent.com/godot-sdk-integrations/godot-admob/main/addon/src/icon.png" width="20"> | [Admob](https://github.com/godot-sdk-integrations/godot-admob) | ✅ | ✅ | <a href="https://github.com/godot-sdk-integrations/godot-admob/releases"><img src="https://img.shields.io/github/release-date/godot-sdk-integrations/godot-admob?label=%20" /> <img src="https://img.shields.io/github/v/release/godot-sdk-integrations/godot-admob?label=%20" /></a> | <img src="https://img.shields.io/github/downloads/godot-sdk-integrations/godot-admob/latest/total?label=latest" /> <img src="https://img.shields.io/github/downloads/godot-sdk-integrations/godot-admob/total?label=total" /> | <img src="https://img.shields.io/github/stars/godot-sdk-integrations/godot-admob?style=plastic&label=%20" /> |
+| <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-connection-state/main/addon/src/icon.png" width="20"> | [Connection State](https://github.com/godot-mobile-plugins/godot-connection-state) | ✅ | ✅ | <a href="https://github.com/godot-mobile-plugins/godot-connection-state/releases"><img src="https://img.shields.io/github/release-date/godot-mobile-plugins/godot-connection-state?label=%20" /> <img src="https://img.shields.io/github/v/release/godot-mobile-plugins/godot-connection-state?label=%20" /></a> | <img src="https://img.shields.io/github/downloads/godot-mobile-plugins/godot-connection-state/latest/total?label=latest" /> <img src="https://img.shields.io/github/downloads/godot-mobile-plugins/godot-connection-state/total?label=total" /> | <img src="https://img.shields.io/github/stars/godot-mobile-plugins/godot-connection-state?style=plastic&label=%20" /> |
+| <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-deeplink/main/addon/src/icon.png" width="20"> | [Deeplink](https://github.com/godot-mobile-plugins/godot-deeplink) | ✅ | ✅ | <a href="https://github.com/godot-mobile-plugins/godot-deeplink/releases"><img src="https://img.shields.io/github/release-date/godot-mobile-plugins/godot-deeplink?label=%20" /> <img src="https://img.shields.io/github/v/release/godot-mobile-plugins/godot-deeplink?label=%20" /></a> | <img src="https://img.shields.io/github/downloads/godot-mobile-plugins/godot-deeplink/latest/total?label=latest" /> <img src="https://img.shields.io/github/downloads/godot-mobile-plugins/godot-deeplink/total?label=total" /> | <img src="https://img.shields.io/github/stars/godot-mobile-plugins/godot-deeplink?style=plastic&label=%20" /> |
+| <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-firebase/main/addon/src/icon.png" width="20"> | [Firebase](https://github.com/godot-mobile-plugins/godot-firebase) | ✅ | ✅ | - <!-- <a href="https://github.com/godot-mobile-plugins/godot-firebase/releases"><img src="https://img.shields.io/github/release-date/godot-mobile-plugins/godot-firebase?label=%20" /> <img src="https://img.shields.io/github/v/release/godot-mobile-plugins/godot-firebase?label=%20" /></a> --> | - <!-- <img src="https://img.shields.io/github/downloads/godot-mobile-plugins/godot-firebase/latest/total?label=latest" /> <img src="https://img.shields.io/github/downloads/godot-mobile-plugins/godot-firebase/total?label=%20" /> --> | <img src="https://img.shields.io/github/stars/godot-mobile-plugins/godot-firebase?style=plastic&label=%20" /> |
+| <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-inapp-review/main/addon/src/icon.png" width="20"> | [In-App Review](https://github.com/godot-mobile-plugins/godot-inapp-review) | ✅ | ✅ | <a href="https://github.com/godot-mobile-plugins/godot-inapp-review/releases"><img src="https://img.shields.io/github/release-date/godot-mobile-plugins/godot-inapp-review?label=%20" /> <img src="https://img.shields.io/github/v/release/godot-mobile-plugins/godot-inapp-review?label=%20" /></a> | <img src="https://img.shields.io/github/downloads/godot-mobile-plugins/godot-inapp-review/latest/total?label=latest" /> <img src="https://img.shields.io/github/downloads/godot-mobile-plugins/godot-inapp-review/total?label=total" /> | <img src="https://img.shields.io/github/stars/godot-mobile-plugins/godot-inapp-review?style=plastic&label=%20" /> |
+| <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-native-camera/main/addon/src/icon.png" width="20"> | [Native Camera](https://github.com/godot-mobile-plugins/godot-native-camera) | ✅ | ✅ | <a href="https://github.com/godot-mobile-plugins/godot-native-camera/releases"><img src="https://img.shields.io/github/release-date/godot-mobile-plugins/godot-native-camera?label=%20" /> <img src="https://img.shields.io/github/v/release/godot-mobile-plugins/godot-native-camera?label=%20" /></a> | <img src="https://img.shields.io/github/downloads/godot-mobile-plugins/godot-native-camera/latest/total?label=latest" /> <img src="https://img.shields.io/github/downloads/godot-mobile-plugins/godot-native-camera/total?label=total" /> | <img src="https://img.shields.io/github/stars/godot-mobile-plugins/godot-native-camera?style=plastic&label=%20" /> |
+| <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-notification-scheduler/main/addon/src/icon.png" width="20"> | [Notification Scheduler](https://github.com/godot-mobile-plugins/godot-notification-scheduler) | ✅ | ✅ | <a href="https://github.com/godot-mobile-plugins/godot-notification-scheduler/releases"><img src="https://img.shields.io/github/release-date/godot-mobile-plugins/godot-notification-scheduler?label=%20" /> <img src="https://img.shields.io/github/v/release/godot-mobile-plugins/godot-notification-scheduler?label=%20" /></a> | <img src="https://img.shields.io/github/downloads/godot-mobile-plugins/godot-notification-scheduler/latest/total?label=latest" /> <img src="https://img.shields.io/github/downloads/godot-mobile-plugins/godot-notification-scheduler/total?label=total" /> | <img src="https://img.shields.io/github/stars/godot-mobile-plugins/godot-notification-scheduler?style=plastic&label=%20" /> |
+| <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-oauth2/main/addon/src/icon.png" width="20"> | [OAuth 2.0](https://github.com/godot-mobile-plugins/godot-oauth2) | ✅ | ✅ | <a href="https://github.com/godot-mobile-plugins/godot-oauth2/releases"><img src="https://img.shields.io/github/release-date/godot-mobile-plugins/godot-oauth2?label=%20" /> <img src="https://img.shields.io/github/v/release/godot-mobile-plugins/godot-oauth2?label=%20" /></a> | <img src="https://img.shields.io/github/downloads/godot-mobile-plugins/godot-oauth2/latest/total?label=latest" /> <img src="https://img.shields.io/github/downloads/godot-mobile-plugins/godot-oauth2/total?label=total" /> | <img src="https://img.shields.io/github/stars/godot-mobile-plugins/godot-oauth2?style=plastic&label=%20" /> |
+| <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-qr/main/addon/src/icon.png" width="20"> | [QR](https://github.com/godot-mobile-plugins/godot-qr) | ✅ | ✅ | <a href="https://github.com/godot-mobile-plugins/godot-qr/releases"><img src="https://img.shields.io/github/release-date/godot-mobile-plugins/godot-qr?label=%20" /> <img src="https://img.shields.io/github/v/release/godot-mobile-plugins/godot-qr?label=%20" /></a> | <img src="https://img.shields.io/github/downloads/godot-mobile-plugins/godot-qr/latest/total?label=latest" /> <img src="https://img.shields.io/github/downloads/godot-mobile-plugins/godot-qr/total?label=total" /> | <img src="https://img.shields.io/github/stars/godot-mobile-plugins/godot-qr?style=plastic&label=%20" /> |
+| <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-share/main/addon/src/icon.png" width="20"> | [Share](https://github.com/godot-mobile-plugins/godot-share) | ✅ | ✅ | <a href="https://github.com/godot-mobile-plugins/godot-share/releases"><img src="https://img.shields.io/github/release-date/godot-mobile-plugins/godot-share?label=%20" /> <img src="https://img.shields.io/github/v/release/godot-mobile-plugins/godot-share?label=%20" /></a> | <img src="https://img.shields.io/github/downloads/godot-mobile-plugins/godot-share/latest/total?label=latest" /> <img src="https://img.shields.io/github/downloads/godot-mobile-plugins/godot-share/total?label=total" /> | <img src="https://img.shields.io/github/stars/godot-mobile-plugins/godot-share?style=plastic&label=%20" /> |
 
----
+<br>
 
 <a name="credits"></a>
 
@@ -323,14 +315,32 @@ In addition to adding and enabling the plugin, **platform-level configuration** 
 
 Developed by [Cengiz](https://github.com/cengiz-pz)
 
-Based on [Godot Mobile Plugin Template](https://github.com/godot-mobile-plugins/godot-plugin-template)
+Based on [Godot Mobile Plugin Template v5](https://github.com/godot-mobile-plugins/godot-plugin-template/tree/v5)
 
 Original repository: [Godot Deeplink Plugin](https://github.com/godot-mobile-plugins/godot-deeplink)
 
----
+<br>
 
 <a name="contributing"></a>
 
 # <img src="https://raw.githubusercontent.com/godot-mobile-plugins/godot-deeplink/main/addon/src/icon.png" width="24"> Contributing
 
-See [the contribution guide](https://github.com/godot-mobile-plugins/godot-deeplink?tab=contributing-ov-file) if you would like to contribute to this project.
+See [our guide](https://github.com/godot-mobile-plugins/godot-deeplink?tab=contributing-ov-file) if you would like to contribute to this project.
+
+<br>
+
+# 💖 Support the Project
+
+If this plugin has helped you, consider supporting its development! Every bit of support helps keep the plugin updated and bug-free.
+
+| ✦ | Ways to Help | How to do it |
+| :--- | :--- | :--- |
+|✨⭐| **Spread the Word** | [Star this repo](https://github.com/godot-mobile-plugins/godot-deeplink/stargazers) to help others find it. |
+|💡✨| **Give Feedback** | [Open an issue](https://github.com/godot-mobile-plugins/godot-deeplink/issues) or [suggest a feature](https://github.com/godot-mobile-plugins/godot-deeplink/issues/new). |
+|🧩| **Contribute** | [Submit a PR](https://github.com/godot-mobile-plugins/godot-deeplink?tab=contributing-ov-file) to help improve the codebase. |
+|❤️| **Buy a Coffee** | Support the maintainers on GitHub Sponsors or other platforms. |
+
+<br>
+
+## ⭐ Star History
+[![Star History Chart](https://api.star-history.com/svg?repos=godot-mobile-plugins/godot-deeplink&type=Date)](https://star-history.com/#godot-mobile-plugins/godot-deeplink&Date)
