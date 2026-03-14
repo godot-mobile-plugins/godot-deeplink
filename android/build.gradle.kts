@@ -76,6 +76,15 @@ android {
     }
 }
 
+androidComponents {
+    beforeVariants(selector().all()) { variantBuilder ->
+        // Disables unit tests
+        variantBuilder.enableUnitTest = false
+        // Disables instrumented tests
+        variantBuilder.androidTest.enable = false
+    }
+}
+
 node {
     download = true
     version =

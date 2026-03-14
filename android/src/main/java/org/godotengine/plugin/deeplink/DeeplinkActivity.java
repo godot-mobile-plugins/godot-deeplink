@@ -57,8 +57,7 @@ public class DeeplinkActivity extends Activity {
 			godotIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 			Log.d(LOG_TAG, "startGodot() " + CLASS_NAME + " with " + godotIntent);
 			startActivity(godotIntent);
-		}
-		else {
+		} else {
 			Log.i(LOG_TAG, "startGodot(): Godot is already running.");
 			DeeplinkPlugin.instance.handleDeeplinkReceived(new DeeplinkUrl(uri).getRawData());
 		}
@@ -72,12 +71,10 @@ public class DeeplinkActivity extends Activity {
 			uri = intent.getData();
 			if (uri != null) {
 				Log.d(LOG_TAG, "checkIntent() " + CLASS_NAME + " received app link data " + uri);
-			}
-			else {
+			} else {
 				Log.d(LOG_TAG, "checkIntent() " + CLASS_NAME + " uri is null for intent " + intent);
 			}
-		}
-		else {
+		} else {
 			Log.d(LOG_TAG, "checkIntent() " + CLASS_NAME + " intent is null.");
 		}
 
