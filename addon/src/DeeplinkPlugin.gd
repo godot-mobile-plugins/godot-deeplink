@@ -209,10 +209,8 @@ class IosExportPlugin extends EditorExportPlugin:
 
 	func _export_directory_path_for_entitlements(a_export_path: String) -> String:
 		var __directory_path := a_export_path.trim_suffix(EXPORT_FILE_SUFFIX)
-		if __directory_path.begins_with("res://") or __directory_path.begins_with("user://"):
-			return ProjectSettings.globalize_path(__directory_path)
 		if __directory_path.is_absolute_path():
-			return __directory_path
+			return ProjectSettings.globalize_path(__directory_path)
 		return ProjectSettings.globalize_path("res://" + __directory_path)
 
 
