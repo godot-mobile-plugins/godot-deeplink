@@ -239,8 +239,10 @@ class IosExportPlugin extends EditorExportPlugin:
 						Deeplink.log_error("Couldn't open file '%s' for writing." % __file_path)
 				else:
 					Deeplink.log_error("Directory '%s' doesn't exist." % __directory_path)
-			else:
-				Deeplink.log_error("Unexpected export path '%s'" % _export_path)
+			# No else: _export_end() is invoked for every export platform, but
+			# entitlements only apply to iOS (.ipa) exports. A non-.ipa path
+			# (Android, desktop) is not an error — there is simply nothing to
+			# regenerate.
 		else:
 			Deeplink.log_error("Export path is not defined.")
 
