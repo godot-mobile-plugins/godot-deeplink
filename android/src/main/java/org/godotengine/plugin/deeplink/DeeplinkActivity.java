@@ -14,17 +14,6 @@ public class DeeplinkActivity extends Activity {
 	private static final String CLASS_NAME = DeeplinkActivity.class.getSimpleName();
 	private static final String LOG_TAG = "godot::" + CLASS_NAME;
 
-	private static final String GODOT_APP_MAIN_ACTIVITY_CLASSPATH = "com.godot.game.GodotApp";
-	private static Class<?> godotAppMainActivityClass = null;
-
-	static {
-		try {
-			godotAppMainActivityClass = Class.forName(GODOT_APP_MAIN_ACTIVITY_CLASSPATH);
-		} catch (ClassNotFoundException e) {
-			Log.e(LOG_TAG, "could not find " + GODOT_APP_MAIN_ACTIVITY_CLASSPATH);
-		}
-	}
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -51,15 +40,27 @@ public class DeeplinkActivity extends Activity {
 
 	private void startGodot(Intent intent, Uri uri) {
 		if (DeeplinkPlugin.instance == null) {
-			Intent godotIntent = new Intent(getApplicationContext(), godotAppMainActivityClass);
-			godotIntent.setData(intent.getData());
-			godotIntent.putExtras(intent);
-			godotIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-			Log.d(LOG_TAG, "startGodot() " + CLASS_NAME + " with " + godotIntent);
-			startActivity(godotIntent);
+			Intent godotIntent = getPackageManager().getLaunchIntentForPackage(getPackageName());
+			if (godotIntent != null) {
+				godotIntent.setData(intent.getData());
+				godotIntent.putExtras(intent);
+				Log.d(LOG_TAG, "startGodot() " + CLASS_NAME + " with " + godotIntent);
+				startActivity(godotIntent);
+			}
 		} else {
 			Log.i(LOG_TAG, "startGodot(): Godot is already running.");
 			DeeplinkPlugin.instance.handleDeeplinkReceived(new DeeplinkUrl(uri).getRawData());
+
+			// Bring the existing Godot instance to the foreground safely
+			Intent godotIntent = getPackageManager().getLaunchIntentForPackage(getPackageName());
+			if (godotIntent != null) {
+				godotIntent.setFlags(
+						Intent.FLAG_ACTIVITY_NEW_TASK |
+						Intent.FLAG_ACTIVITY_CLEAR_TOP |
+						Intent.FLAG_ACTIVITY_SINGLE_TOP
+				);
+				startActivity(godotIntent);
+			}
 		}
 		finish();
 	}

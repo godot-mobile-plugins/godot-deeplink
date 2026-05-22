@@ -3,16 +3,29 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0721C6C12F82639B00A9BA75 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0721C6C02F82639B00A9BA75 /* XCTest.framework */; platformFilter = ios; };
 		077144982F34AE6B0039DDEB /* deeplink_plugin.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0771448F2F34AE6B0039DDEB /* deeplink_plugin.mm */; };
 		077144992F34AE6B0039DDEB /* deeplink_plugin_bootstrap.mm in Sources */ = {isa = PBXBuildFile; fileRef = 077144912F34AE6B0039DDEB /* deeplink_plugin_bootstrap.mm */; };
 		0771449A2F34AE6B0039DDEB /* gdp_converter.mm in Sources */ = {isa = PBXBuildFile; fileRef = 077144962F34AE6B0039DDEB /* gdp_converter.mm */; };
 		0771449B2F34AE6B0039DDEB /* deeplink_logger.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0771448D2F34AE6B0039DDEB /* deeplink_logger.mm */; };
 		0771449C2F34AE6B0039DDEB /* deeplink_url.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0771448A2F34AE6B0039DDEB /* deeplink_url.mm */; };
 		0771449D2F34AE6B0039DDEB /* deeplink_service.mm in Sources */ = {isa = PBXBuildFile; fileRef = 077144942F34AE6B0039DDEB /* deeplink_service.mm */; };
+		07ADAD6E2FBD449300675095 /* DeeplinkPluginTests.mm in Sources */ = {isa = PBXBuildFile; fileRef = 07ADAD682FBD449300675095 /* DeeplinkPluginTests.mm */; };
+		07ADAD6F2FBD449300675095 /* DeeplinkTestFixtures.mm in Sources */ = {isa = PBXBuildFile; fileRef = 07ADAD662FBD449300675095 /* DeeplinkTestFixtures.mm */; };
+		07ADAD702FBD449300675095 /* DeeplinkServiceTests.mm in Sources */ = {isa = PBXBuildFile; fileRef = 07ADAD692FBD449300675095 /* DeeplinkServiceTests.mm */; };
+		07ADAD712FBD449300675095 /* GDPConverterTests.mm in Sources */ = {isa = PBXBuildFile; fileRef = 07ADAD6B2FBD449300675095 /* GDPConverterTests.mm */; };
+		07ADAD722FBD449300675095 /* DeeplinkUrlTests.mm in Sources */ = {isa = PBXBuildFile; fileRef = 07ADAD6A2FBD449300675095 /* DeeplinkUrlTests.mm */; };
+		07ADAD732FBD449300675095 /* DeeplinkTestFakes.mm in Sources */ = {isa = PBXBuildFile; fileRef = 07ADAD6D2FBD449300675095 /* DeeplinkTestFakes.mm */; };
+		07BE00012FBD600000000001 /* deeplink_plugin.mm in Sources (test) */ = {isa = PBXBuildFile; fileRef = 0771448F2F34AE6B0039DDEB /* deeplink_plugin.mm */; };
+		07BE00022FBD600000000002 /* gdp_converter.mm in Sources (test) */ = {isa = PBXBuildFile; fileRef = 077144962F34AE6B0039DDEB /* gdp_converter.mm */; };
+		07BE00032FBD600000000003 /* deeplink_logger.mm in Sources (test) */ = {isa = PBXBuildFile; fileRef = 0771448D2F34AE6B0039DDEB /* deeplink_logger.mm */; };
+		07BE00042FBD600000000004 /* deeplink_url.mm in Sources (test) */ = {isa = PBXBuildFile; fileRef = 0771448A2F34AE6B0039DDEB /* deeplink_url.mm */; };
+		07BE00052FBD600000000005 /* deeplink_service.mm in Sources (test) */ = {isa = PBXBuildFile; fileRef = 077144942F34AE6B0039DDEB /* deeplink_service.mm */; };
+		07BE00082FBD600000000008 /* GodotAppDelegateStub.mm in Sources */ = {isa = PBXBuildFile; fileRef = 07BE00092FBD600000000009 /* GodotAppDelegateStub.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -28,6 +41,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0721C69E2F82629000A9BA75 /* deeplink_plugin_tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = deeplink_plugin_tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0721C6C02F82639B00A9BA75 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		077144892F34AE6B0039DDEB /* deeplink_url.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = deeplink_url.h; sourceTree = "<group>"; };
 		0771448A2F34AE6B0039DDEB /* deeplink_url.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = deeplink_url.mm; sourceTree = "<group>"; };
 		0771448C2F34AE6B0039DDEB /* deeplink_logger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = deeplink_logger.h; sourceTree = "<group>"; };
@@ -41,10 +56,27 @@
 		077144942F34AE6B0039DDEB /* deeplink_service.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = deeplink_service.mm; sourceTree = "<group>"; };
 		077144952F34AE6B0039DDEB /* gdp_converter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = gdp_converter.h; sourceTree = "<group>"; };
 		077144962F34AE6B0039DDEB /* gdp_converter.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = gdp_converter.mm; sourceTree = "<group>"; };
+		07ADAD652FBD449300675095 /* DeeplinkTestFixtures.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeeplinkTestFixtures.h; sourceTree = "<group>"; };
+		07ADAD662FBD449300675095 /* DeeplinkTestFixtures.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = DeeplinkTestFixtures.mm; sourceTree = "<group>"; };
+		07ADAD6C2FBD449300675095 /* DeeplinkTestFakes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeeplinkTestFakes.h; sourceTree = "<group>"; };
+		07ADAD6D2FBD449300675095 /* DeeplinkTestFakes.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = DeeplinkTestFakes.mm; sourceTree = "<group>"; };
+		07ADAD682FBD449300675095 /* DeeplinkPluginTests.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = DeeplinkPluginTests.mm; sourceTree = "<group>"; };
+		07ADAD692FBD449300675095 /* DeeplinkServiceTests.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = DeeplinkServiceTests.mm; sourceTree = "<group>"; };
+		07ADAD6A2FBD449300675095 /* DeeplinkUrlTests.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = DeeplinkUrlTests.mm; sourceTree = "<group>"; };
+		07ADAD6B2FBD449300675095 /* GDPConverterTests.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = GDPConverterTests.mm; sourceTree = "<group>"; };
+		07BE00092FBD600000000009 /* GodotAppDelegateStub.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = GodotAppDelegateStub.mm; sourceTree = "<group>"; };
 		90CAAA9424E71FF10013969F /* libdeeplink_plugin.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libdeeplink_plugin.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		0721C69B2F82629000A9BA75 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0721C6C12F82639B00A9BA75 /* XCTest.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		90CAAA9124E71FF10013969F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -55,6 +87,38 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		073E18652F835E0400D42B57 /* fixtures */ = {
+			isa = PBXGroup;
+			children = (
+				07ADAD652FBD449300675095 /* DeeplinkTestFixtures.h */,
+				07ADAD662FBD449300675095 /* DeeplinkTestFixtures.mm */,
+				07ADAD6C2FBD449300675095 /* DeeplinkTestFakes.h */,
+				07ADAD6D2FBD449300675095 /* DeeplinkTestFakes.mm */,
+				07BE00092FBD600000000009 /* GodotAppDelegateStub.mm */,
+			);
+			path = fixtures;
+			sourceTree = "<group>";
+		};
+		073E186F2F835E0400D42B57 /* unit */ = {
+			isa = PBXGroup;
+			children = (
+				07ADAD682FBD449300675095 /* DeeplinkPluginTests.mm */,
+				07ADAD692FBD449300675095 /* DeeplinkServiceTests.mm */,
+				07ADAD6A2FBD449300675095 /* DeeplinkUrlTests.mm */,
+				07ADAD6B2FBD449300675095 /* GDPConverterTests.mm */,
+			);
+			path = unit;
+			sourceTree = "<group>";
+		};
+		073E18702F835E0400D42B57 /* test */ = {
+			isa = PBXGroup;
+			children = (
+				073E18652F835E0400D42B57 /* fixtures */,
+				073E186F2F835E0400D42B57 /* unit */,
+			);
+			path = test;
+			sourceTree = "<group>";
+		};
 		0771448B2F34AE6B0039DDEB /* model */ = {
 			isa = PBXGroup;
 			children = (
@@ -64,7 +128,7 @@
 			path = model;
 			sourceTree = "<group>";
 		};
-		077144972F34AE6B0039DDEB /* src */ = {
+		07C98E092F3348BA002D3480 /* src */ = {
 			isa = PBXGroup;
 			children = (
 				0771448B2F34AE6B0039DDEB /* model */,
@@ -86,7 +150,8 @@
 		90CAAA8B24E71FF10013969F = {
 			isa = PBXGroup;
 			children = (
-				077144972F34AE6B0039DDEB /* src */,
+				073E18702F835E0400D42B57 /* test */,
+				07C98E092F3348BA002D3480 /* src */,
 				90CAAA9524E71FF10013969F /* Products */,
 				90CAAAA824E72A8A0013969F /* Frameworks */,
 			);
@@ -96,6 +161,7 @@
 			isa = PBXGroup;
 			children = (
 				90CAAA9424E71FF10013969F /* libdeeplink_plugin.a */,
+				0721C69E2F82629000A9BA75 /* deeplink_plugin_tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -103,6 +169,7 @@
 		90CAAAA824E72A8A0013969F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0721C6C02F82639B00A9BA75 /* XCTest.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -110,6 +177,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		0721C69D2F82629000A9BA75 /* deeplink_plugin_tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0721C6A72F82629000A9BA75 /* Build configuration list for PBXNativeTarget "deeplink_plugin_tests" */;
+			buildPhases = (
+				0721C69A2F82629000A9BA75 /* Sources */,
+				0721C69B2F82629000A9BA75 /* Frameworks */,
+				0721C69C2F82629000A9BA75 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = deeplink_plugin_tests;
+			productName = deeplink_plugin_tests;
+			productReference = 0721C69E2F82629000A9BA75 /* deeplink_plugin_tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		90CAAA9324E71FF10013969F /* deeplink_plugin */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 90CAAA9D24E71FF10013969F /* Build configuration list for PBXNativeTarget "deeplink_plugin" */;
@@ -133,9 +217,14 @@
 		90CAAA8C24E71FF10013969F /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1160;
+				BuildIndependentTargetsInParallel = YES;
+				LastSwiftUpdateCheck = 2600;
+				LastUpgradeCheck = 2600;
 				ORGANIZATIONNAME = Godot;
 				TargetAttributes = {
+					0721C69D2F82629000A9BA75 = {
+						CreatedOnToolsVersion = 26.0;
+					};
 					90CAAA9324E71FF10013969F = {
 						CreatedOnToolsVersion = 11.6;
 						LastSwiftMigration = 1230;
@@ -156,11 +245,41 @@
 			projectRoot = "";
 			targets = (
 				90CAAA9324E71FF10013969F /* deeplink_plugin */,
+				0721C69D2F82629000A9BA75 /* deeplink_plugin_tests */,
 			);
 		};
 /* End PBXProject section */
 
+/* Begin PBXResourcesBuildPhase section */
+		0721C69C2F82629000A9BA75 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
+		0721C69A2F82629000A9BA75 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				07BE00012FBD600000000001 /* deeplink_plugin.mm in Sources (test) */,
+				07BE00022FBD600000000002 /* gdp_converter.mm in Sources (test) */,
+				07BE00032FBD600000000003 /* deeplink_logger.mm in Sources (test) */,
+				07BE00042FBD600000000004 /* deeplink_url.mm in Sources (test) */,
+				07BE00052FBD600000000005 /* deeplink_service.mm in Sources (test) */,
+				07BE00082FBD600000000008 /* GodotAppDelegateStub.mm in Sources */,
+				07ADAD6E2FBD449300675095 /* DeeplinkPluginTests.mm in Sources */,
+				07ADAD6F2FBD449300675095 /* DeeplinkTestFixtures.mm in Sources */,
+				07ADAD732FBD449300675095 /* DeeplinkTestFakes.mm in Sources */,
+				07ADAD702FBD449300675095 /* DeeplinkServiceTests.mm in Sources */,
+				07ADAD712FBD449300675095 /* GDPConverterTests.mm in Sources */,
+				07ADAD722FBD449300675095 /* DeeplinkUrlTests.mm in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		90CAAA9024E71FF10013969F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -177,6 +296,196 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
+		0721C6A52F82629000A9BA75 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = UC9RM2H3ML;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				GODOT_DIR = "$(SRCROOT)/godot";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(CONFIGURATION_TEMP_DIR)/deeplink_plugin.build/DerivedSources",
+					"$(SRCROOT)/test/fixtures",
+					"$(SRCROOT)/src",
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(GODOT_DIR)/bin",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				OTHER_CFLAGS = (
+					"-g",
+					"-DDEBUG",
+					"-DDEBUG_ENABLED",
+					"-DDEBUG_MEMORY_ALLOC",
+					"-DDISABLE_FORCED_INLINE",
+					"-DTYPED_METHOD_BIND",
+					"-fmodules",
+					"-fobjc-arc",
+					"-fmessage-length=0",
+					"-fno-strict-aliasing",
+					"-fdiagnostics-print-source-range-info",
+					"-fdiagnostics-show-category=id",
+					"-fdiagnostics-parseable-fixits",
+					"-fpascal-strings",
+					"-fblocks",
+					"-fvisibility=hidden",
+					"-MMD",
+					"-fno-exceptions",
+					"-Wno-ambiguous-macro",
+					"-Wall",
+					"-Werror=return-type",
+					"-DPTRCALL_ENABLED",
+				);
+				OTHER_CPLUSPLUSFLAGS = (
+					"-fcxx-modules",
+					"-gdwarf-2",
+					"-O0",
+					"-DDEBUG_MEMORY_ALLOC",
+					"-DDISABLE_FORCED_INLINE",
+					"-D_DEBUG",
+					"-DDEBUG=1",
+					"-DDEBUG_ENABLED",
+					"-DVERSION_4_0",
+					"-DIOS_ENABLED",
+					"-DNEED_LONG_INT",
+					"-DLIBYUV_DISABLE_NEON",
+					"-DIPHONE_ENABLED",
+					"-DUNIX_ENABLED",
+					"-DCOREAUDIO_ENABLED",
+					"-DAPPLE_EMBEDDED_ENABLED",
+					"-isystem",
+					"$(GODOT_DIR)",
+					"-isystem",
+					"$(GODOT_DIR)/drivers/apple_embedded",
+					"-isystem",
+					"$(GODOT_DIR)/platform/ios",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-undefined",
+					"dynamic_lookup",
+					"$(GODOT_DIR)/bin/libgodot.ios.template_debug.$(CURRENT_ARCH).simulator.a",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "org.godotengine.plugin.plugin-template-unit-tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.9;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		0721C6A62F82629000A9BA75 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = UC9RM2H3ML;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				GODOT_DIR = "$(SRCROOT)/godot";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(CONFIGURATION_TEMP_DIR)/deeplink_plugin.build/DerivedSources",
+					"$(SRCROOT)/test/fixtures",
+					"$(SRCROOT)/src",
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(GODOT_DIR)/bin",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				OTHER_CFLAGS = (
+					"-fmodules",
+					"-fobjc-arc",
+					"-fmessage-length=0",
+					"-fno-strict-aliasing",
+					"-fdiagnostics-print-source-range-info",
+					"-fdiagnostics-show-category=id",
+					"-fdiagnostics-parseable-fixits",
+					"-fpascal-strings",
+					"-fblocks",
+					"-fvisibility=hidden",
+					"-MMD",
+					"-fno-exceptions",
+					"-Wno-ambiguous-macro",
+					"-Wall",
+					"-Werror=return-type",
+					"-DPTRCALL_ENABLED",
+				);
+				OTHER_CPLUSPLUSFLAGS = (
+					"-fcxx-modules",
+					"-O2",
+					"-ftree-vectorize",
+					"-DNDEBUG",
+					"-DNS_BLOCK_ASSERTIONS=1",
+					"-DVERSION_4_0",
+					"-DIOS_ENABLED",
+					"-DNEED_LONG_INT",
+					"-DLIBYUV_DISABLE_NEON",
+					"-DIPHONE_ENABLED",
+					"-DUNIX_ENABLED",
+					"-DCOREAUDIO_ENABLED",
+					"-DAPPLE_EMBEDDED_ENABLED",
+					"-isystem",
+					"$(GODOT_DIR)",
+					"-isystem",
+					"$(GODOT_DIR)/drivers/apple_embedded",
+					"-isystem",
+					"$(GODOT_DIR)/platform/ios",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-undefined",
+					"dynamic_lookup",
+					"$(GODOT_DIR)/bin/libgodot.ios.template_debug.$(CURRENT_ARCH).simulator.a",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "org.godotengine.plugin.plugin-template-unit-tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.9;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		90CAAA9B24E71FF10013969F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -203,6 +512,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -211,6 +521,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -261,6 +572,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -269,6 +581,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -283,6 +596,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -291,8 +605,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				ENABLE_MODULE_VERIFIER = YES;
 				GODOT_DIR = "$(SRCROOT)/godot";
-				HEADER_SEARCH_PATHS = "$(inherited)";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/src",
+				);
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -303,6 +622,7 @@
 					"$(inherited)",
 					"$(GODOT_DIR)/bin",
 				);
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu11 gnu++17";
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = (
 					"-g",
@@ -353,9 +673,11 @@
 					"$(GODOT_DIR)/platform/ios",
 				);
 				OTHER_LDFLAGS = "$(inherited)";
+				PRODUCT_MODULE_NAME = deeplink_plugin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "src/deeplink_plugin-Bridging-Header.h";
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "deeplink_plugin-Swift.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.9;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -366,8 +688,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				ENABLE_MODULE_VERIFIER = YES;
 				GODOT_DIR = "$(SRCROOT)/godot";
-				HEADER_SEARCH_PATHS = "$(inherited)";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/src",
+				);
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -378,6 +705,7 @@
 					"$(inherited)",
 					"$(GODOT_DIR)/bin",
 				);
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu11 gnu++17";
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = (
 					"-fmodules",
@@ -419,9 +747,11 @@
 					"$(GODOT_DIR)/platform/ios",
 				);
 				OTHER_LDFLAGS = "$(inherited)";
+				PRODUCT_MODULE_NAME = deeplink_plugin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "src/deeplink_plugin-Bridging-Header.h";
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "deeplink_plugin-Swift.h";
 				SWIFT_VERSION = 5.9;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -430,6 +760,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		0721C6A72F82629000A9BA75 /* Build configuration list for PBXNativeTarget "deeplink_plugin_tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0721C6A52F82629000A9BA75 /* Debug */,
+				0721C6A62F82629000A9BA75 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		90CAAA8F24E71FF10013969F /* Build configuration list for PBXProject "plugin" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
