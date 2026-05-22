@@ -11,7 +11,12 @@
 // TO GODOT
 
 + (String)nsStringToGodotString:(NSString *)nsString {
-	return [nsString UTF8String];
+	if (!nsString) {
+		return String();
+	}
+
+	// Explicitly parse the C-string wrapper as UTF-8
+	return String::utf8([nsString UTF8String]);
 }
 
 + (Dictionary)nsDictionaryToGodotDictionary:(NSDictionary *)nsDictionary {
@@ -31,7 +36,7 @@
 		const char *godotKey = [key UTF8String];
 
 		if ([valueObject isKindOfClass:[NSString class]]) {
-			dictionary[godotKey] = [(NSString *)valueObject UTF8String];
+			dictionary[godotKey] = [GDPConverter nsStringToGodotString:(NSString *)valueObject];
 		} else if ([valueObject isKindOfClass:[NSNumber class]]) {
 			dictionary[godotKey] = [GDPConverter nsNumberToGodotVariant:(NSNumber *)valueObject];
 		} else if ([valueObject isKindOfClass:[NSDictionary class]]) {
@@ -61,7 +66,7 @@
 
 	for (NSObject *element in nsArray) {
 		if ([element isKindOfClass:[NSString class]]) {
-			godotArray.append([(NSString *)element UTF8String]);
+			godotArray.append([GDPConverter nsStringToGodotString:(NSString *)element]);
 		} else if ([element isKindOfClass:[NSNumber class]]) {
 			godotArray.append([GDPConverter nsNumberToGodotVariant:(NSNumber *)element]);
 		} else if ([element isKindOfClass:[NSDictionary class]]) {

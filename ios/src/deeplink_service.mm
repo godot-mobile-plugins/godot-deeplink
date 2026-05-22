@@ -13,6 +13,10 @@ struct DeeplinkServiceInitializer {
 };
 static DeeplinkServiceInitializer initializer;
 
+@interface DeeplinkService ()
+- (void)processURL:(NSURL *)url fromSource:(NSString *)source;
+@end
+
 @implementation DeeplinkService
 
 - (instancetype)init {
@@ -29,117 +33,109 @@ static DeeplinkServiceInitializer initializer;
 	return sharedInstance;
 }
 
+#pragma mark - Core URL Processing Helper
+
+- (void)processURL:(NSURL *)url fromSource:(NSString *)source {
+	if (!url) {
+		os_log_debug(deeplink_log, "Deeplink plugin: URL is empty from source: %@", source);
+		return;
+	}
+
+	DeeplinkPlugin::receivedUrl = [[DeeplinkUrl alloc] initWithNsUrl:url];
+
+	BOOL isCustomScheme = ![url.scheme isEqualToString:@"http"] && ![url.scheme isEqualToString:@"https"];
+	os_log_debug(deeplink_log, "Deeplink plugin: %@ received via [%@]: %@",
+			isCustomScheme ? @"Custom scheme" : @"Universal Link", source, url.absoluteString);
+
+	DeeplinkPlugin *plugin = DeeplinkPlugin::get_singleton();
+	if (plugin) {
+		// CHANGE THIS: Defer the signal until Godot's main loop has fully resumed
+		plugin->call_deferred("emit_signal", DEEPLINK_RECEIVED_SIGNAL, [DeeplinkPlugin::receivedUrl buildRawData]);
+	}
+}
+
+#pragma mark - UIApplicationDelegate Methods (Legacy / Non-Scene Lifecycle)
+
+// Active / Background state via Custom Scheme
 - (BOOL)application:(UIApplication *)app
 			openURL:(NSURL *)url
 			options:(NSDictionary<UIApplicationOpenURLOptionsKey, id> *)options {
-	if (url) {
-		DeeplinkPlugin::receivedUrl = [[DeeplinkUrl alloc] initWithNsUrl:url];
-
-		// Check if the URL is a custom scheme (not http or https)
-		BOOL isCustomScheme = ![url.scheme isEqualToString:@"http"] && ![url.scheme isEqualToString:@"https"];
-		os_log_debug(deeplink_log, "Deeplink plugin: %@ URL received: %@",
-				isCustomScheme ? @"Custom scheme" : @"Universal Link", url.absoluteString);
-
-		DeeplinkPlugin *plugin = DeeplinkPlugin::get_singleton();
-		if (plugin) {
-			plugin->emit_signal(DEEPLINK_RECEIVED_SIGNAL, [DeeplinkPlugin::receivedUrl buildRawData]);
-		}
-	} else {
-		os_log_debug(deeplink_log, "Deeplink plugin: URL is empty!");
-	}
-
+	[self processURL:url fromSource:@"AppDelegate openURL"];
 	return YES;
 }
 
+// Active / Background state via Universal Link
 - (BOOL)application:(UIApplication *)app
 		continueUserActivity:(NSUserActivity *)userActivity
 		  restorationHandler:(void (^)(NSArray<id<UIUserActivityRestoring>> *restorableObjects))restorationHandler {
 	if ([userActivity.activityType isEqualToString:NSUserActivityTypeBrowsingWeb]) {
-		NSURL *url = userActivity.webpageURL;
-		DeeplinkPlugin::receivedUrl = [[DeeplinkUrl alloc] initWithNsUrl:url];
-
-		os_log_debug(
-				deeplink_log, "Deeplink plugin: Universal Link received at app resumption: %@", url.absoluteString);
-
-		DeeplinkPlugin *plugin = DeeplinkPlugin::get_singleton();
-		if (plugin) {
-			plugin->emit_signal(DEEPLINK_RECEIVED_SIGNAL, [DeeplinkPlugin::receivedUrl buildRawData]);
-		}
+		[self processURL:userActivity.webpageURL fromSource:@"AppDelegate continueUserActivity"];
 	}
-
 	return YES;
 }
 
+// Cold Start (App completely terminated)
 - (BOOL)application:(UIApplication *)app
 		didFinishLaunchingWithOptions:(NSDictionary<UIApplicationLaunchOptionsKey, id> *)launchOptions {
 	if (launchOptions) {
 		NSURL *url = [launchOptions objectForKey:UIApplicationLaunchOptionsURLKey];
 		if (url) {
-			BOOL isCustomScheme = ![url.scheme isEqualToString:@"http"] && ![url.scheme isEqualToString:@"https"];
-			os_log_debug(deeplink_log, "Deeplink plugin: %@ received at startup: %@",
-					isCustomScheme ? @"Custom scheme URL" : @"Universal Link", url.absoluteString);
-			DeeplinkPlugin::receivedUrl = [[DeeplinkUrl alloc] initWithNsUrl:url];
-
-			DeeplinkPlugin *plugin = DeeplinkPlugin::get_singleton();
-			if (plugin) {
-				plugin->emit_signal(DEEPLINK_RECEIVED_SIGNAL, [DeeplinkPlugin::receivedUrl buildRawData]);
-			}
+			[self processURL:url fromSource:@"AppDelegate didFinishLaunching (URLKey)"];
 		} else {
-			os_log_debug(deeplink_log, "Deeplink plugin: UIApplicationLaunchOptionsURLKey is empty!");
-
 			NSDictionary *userActivityDict =
 					[launchOptions objectForKey:UIApplicationLaunchOptionsUserActivityDictionaryKey];
 			if (userActivityDict) {
 				url = [userActivityDict objectForKey:UIApplicationLaunchOptionsURLKey];
 				if (url) {
-					BOOL isCustomScheme =
-							![url.scheme isEqualToString:@"http"] && ![url.scheme isEqualToString:@"https"];
-					os_log_debug(deeplink_log,
-							"Deeplink plugin: %@ received at startup from user activity dictionary: %@",
-							isCustomScheme ? @"Custom scheme URL" : @"Universal Link", url.absoluteString);
-					DeeplinkPlugin::receivedUrl = [[DeeplinkUrl alloc] initWithNsUrl:url];
-
-					DeeplinkPlugin *plugin = DeeplinkPlugin::get_singleton();
-					if (plugin) {
-						plugin->emit_signal(DEEPLINK_RECEIVED_SIGNAL, [DeeplinkPlugin::receivedUrl buildRawData]);
-					}
+					[self processURL:url fromSource:@"AppDelegate didFinishLaunching (UserActivity URLKey)"];
 				} else {
-					os_log_debug(deeplink_log,
-							"Deeplink plugin: UIApplicationLaunchOptionsURLKey is empty in user activity dictionary!");
-
 					NSUserActivity *userActivity =
 							[userActivityDict objectForKey:@"UIApplicationLaunchOptionsUserActivityKey"];
-					if (userActivity) {
-						if ([userActivity.activityType isEqualToString:NSUserActivityTypeBrowsingWeb]) {
-							url = userActivity.webpageURL;
-							DeeplinkPlugin::receivedUrl = [[DeeplinkUrl alloc] initWithNsUrl:url];
-
-							os_log_debug(deeplink_log,
-									"Deeplink plugin: Universal Link received at app startup from user activity: %@",
-									url.absoluteString);
-
-							DeeplinkPlugin *plugin = DeeplinkPlugin::get_singleton();
-							if (plugin) {
-								plugin->emit_signal(
-										DEEPLINK_RECEIVED_SIGNAL, [DeeplinkPlugin::receivedUrl buildRawData]);
-							}
-						} else {
-							os_log_debug(
-									deeplink_log, "Deeplink plugin: activity type is %@", userActivity.activityType);
-						}
-					} else {
-						os_log_debug(deeplink_log, "Deeplink plugin: No user activity in user activity dictionary!");
+					if (userActivity && [userActivity.activityType isEqualToString:NSUserActivityTypeBrowsingWeb]) {
+						[self processURL:userActivity.webpageURL
+								fromSource:@"AppDelegate didFinishLaunching (UserActivity Web)"];
 					}
 				}
-			} else {
-				os_log_debug(deeplink_log, "Deeplink plugin: No user activity dictionary either!");
 			}
 		}
-	} else {
-		os_log_debug(deeplink_log, "Deeplink plugin: launch options is empty!");
+	}
+	return YES;
+}
+
+#pragma mark - UIWindowSceneDelegate Methods (Modern Scene Lifecycle)
+
+// Scene Cold Start (App terminated, launched directly into a Scene)
+- (void)scene:(UIScene *)scene
+		willConnectToSession:(UISceneSession *)session
+					 options:(UISceneConnectionOptions *)connectionOptions {
+	// Handle Custom Scheme Cold Start via Scene
+	if (connectionOptions.URLContexts.count > 0) {
+		NSURL *url = connectionOptions.URLContexts.anyObject.URL; // Fixed: .url -> .URL
+		[self processURL:url fromSource:@"SceneDelegate willConnectToSession (Custom Scheme)"];
 	}
 
-	return YES;
+	// Handle Universal Link Cold Start via Scene
+	if (connectionOptions.userActivities.count > 0) { // Fixed: extracted from userActivities set
+		NSUserActivity *userActivity = connectionOptions.userActivities.anyObject;
+		if ([userActivity.activityType isEqualToString:NSUserActivityTypeBrowsingWeb]) {
+			[self processURL:userActivity.webpageURL fromSource:@"SceneDelegate willConnectToSession (Universal Link)"];
+		}
+	}
+}
+
+// Scene Active / Background state via Custom Scheme
+- (void)scene:(UIScene *)scene openURLContexts:(NSSet<UIOpenURLContext *> *)URLContexts {
+	UIOpenURLContext *context = URLContexts.anyObject;
+	if (context) {
+		[self processURL:context.URL fromSource:@"SceneDelegate openURLContexts"]; // Fixed: .url -> .URL
+	}
+}
+
+// Scene Active / Background state via Universal Link
+- (void)scene:(UIScene *)scene continueUserActivity:(NSUserActivity *)userActivity {
+	if ([userActivity.activityType isEqualToString:NSUserActivityTypeBrowsingWeb]) {
+		[self processURL:userActivity.webpageURL fromSource:@"SceneDelegate continueUserActivity"];
+	}
 }
 
 @end

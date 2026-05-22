@@ -121,6 +121,9 @@ DeeplinkPlugin::DeeplinkPlugin() {
 	instance = this;
 
 	initialized = false;
+
+	// This ensures the static initializer block runs and registers with Godot
+	[DeeplinkService shared];
 }
 
 DeeplinkPlugin::~DeeplinkPlugin() {
