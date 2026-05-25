@@ -226,7 +226,8 @@ class IosExportPlugin extends EditorExportPlugin:
 
 
 	func _export_end() -> void:
-		_regenerate_entitlements_file()
+		if _supports_platform(get_export_platform()):
+			_regenerate_entitlements_file()
 
 
 	func _get_extra_dependencies() -> Array[SpmDependency]:
