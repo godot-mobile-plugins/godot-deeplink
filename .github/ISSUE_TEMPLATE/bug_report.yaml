@@ -80,6 +80,8 @@ body:
     label: Plugin Version
     description: What version of the plugin are you running?
     options:
+      - "6.0.1"
+      - "6.0"
       - "5.3"
       - "5.2"
       - "5.1"
