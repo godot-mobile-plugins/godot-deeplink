@@ -49,8 +49,7 @@ static DeeplinkServiceInitializer initializer;
 
 	DeeplinkPlugin *plugin = DeeplinkPlugin::get_singleton();
 	if (plugin) {
-		// CHANGE THIS: Defer the signal until Godot's main loop has fully resumed
-		plugin->call_deferred("emit_signal", DEEPLINK_RECEIVED_SIGNAL, [DeeplinkPlugin::receivedUrl buildRawData]);
+		plugin->call("emit_signal", DEEPLINK_RECEIVED_SIGNAL, [DeeplinkPlugin::receivedUrl buildRawData]);
 	}
 }
 
